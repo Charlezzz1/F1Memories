@@ -1,0 +1,140 @@
+/* ===== Variables y base ===== */
+:root{
+  --rosso-corsa: #D40000;   /* Rosso Corsa (web-safe) */
+  --pantone-2747: #001A72;  /* Pantone 2747 C (aprox pantalla) */
+  --bg: #0B0B10;            /* fondo oscuro racing */
+  --card: #141420;          /* bloques */
+  --text: #E8E8F0;          /* texto principal */
+  --muted: #B4B7C2;         /* texto suave */
+  --divider: #1F2230;
+}
+
+*{ box-sizing: border-box; }
+html, body{
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* ===== Header & Nav ===== */
+.site-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(12px, 2vw, 20px) clamp(16px, 3vw, 40px);
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, #0b0b10 85%, transparent);
+  border-bottom: 1px solid var(--divider);
+  z-index: 10;
+}
+
+.site-title{
+  color: var(--rosso-corsa);
+  font-weight: 800;
+  line-height: 1.05;
+  font-size: clamp(2rem, 5vw, 3.5rem); /* grande y responsivo */
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.nav-list{
+  list-style: none;
+  display: flex;
+  gap: clamp(10px, 2vw, 24px);
+  margin: 0;
+  padding: 0;
+}
+.nav-list a{
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+.nav-list a:hover{
+  opacity: .85;
+  text-decoration: underline;
+}
+
+/* ===== Secciones ===== */
+.section{
+  padding: clamp(28px, 6vw, 64px) clamp(16px, 4vw, 56px);
+  border-top: 1px solid var(--divider);
+}
+
+.banner{
+  display: grid;
+  place-items: center;
+  min-height: 40vh;
+  padding: clamp(36px, 6vw, 80px);
+  background:
+    radial-gradient(1200px 400px at 20% 0%, rgba(212,0,0,.08), transparent 60%),
+    radial-gradient(1200px 400px at 80% 10%, rgba(0,26,114,.10), transparent 60%);
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+}
+
+/* ===== Títulos ===== */
+.section-title{
+  font-weight: 800;
+  margin: 0 0 12px 0;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+}
+.subsection-title{
+  font-weight: 700;
+  margin: 18px 0 8px 0;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+}
+
+/* Colores de títulos según tu pedido */
+.section-white{ color: #FFFFFF; }
+.section-blue{ color: var(--pantone-2747); }
+
+/* Texto normal */
+p{ margin: 0.5rem 0 0; }
+.muted{ color: var(--muted); }
+
+/* Cartas/listas opcionales (por si luego agregas contenido) */
+.lista-noticias, .momentos-historicos, .tabla-calendario{
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 12px;
+}
+.lista-noticias > div,
+.momentos-historicos > div,
+.tabla-calendario > div{
+  background: var(--card);
+  border: 1px solid var(--divider);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+/* Footer */
+.site-footer{
+  padding: clamp(28px, 6vw, 64px) clamp(16px, 4vw, 56px);
+  border-top: 1px solid var(--divider);
+}
+.site-footer a{
+  color: var(--pantone-2747);
+  text-decoration: none;
+  font-weight: 600;
+}
+.site-footer a:hover{ text-decoration: underline; }
+
+/* Accesibilidad y pequeños detalles */
+a:focus, button:focus, input:focus{
+  outline: 2px solid var(--pantone-2747);
+  outline-offset: 2px;
+}
+
+/* Responsivo nav en móvil */
+@media (max-width: 640px){
+  .nav-list{ gap: 12px; }
+}
