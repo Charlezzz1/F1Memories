@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>F1 Memories</title>
-  <!-- CSS lo agregaremos más adelante -->
+
+  <!-- Fuente moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Hoja de estilos -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <!-- Encabezado con logo y navegación -->
-  <header>
+  <header class="site-header">
     <div id="logo">
-      <h1>F1 Memories</h1>
+      <h1 class="site-title">F1 Memories</h1>
     </div>
     <nav>
-      <ul>
+      <ul class="nav-list">
         <li><a href="#temporadas">Temporadas</a></li>
         <li><a href="#escuderias">Escuderías</a></li>
         <li><a href="#pilotos">Pilotos</a></li>
@@ -23,61 +28,74 @@
   </header>
 
   <!-- Banner central -->
-  <section id="banner">
+  <section id="banner" class="banner">
     <!-- Imagen se agregará luego -->
-    <h2>Bienvenidos a F1 Memories</h2>
+    <h2 class="section-title section-white">Bienvenidos a F1 Memories</h2>
   </section>
 
   <!-- Sección: Un día como hoy -->
-  <section id="un-dia-como-hoy">
-    <h2>Un día como hoy en la F1...</h2>
+  <section id="un-dia-como-hoy" class="section">
+    <h2 class="section-title section-white">Un día como hoy en la F1...</h2>
     <div class="momentos-historicos">
       <!-- Aquí se mostrará contenido conmemorativo diario -->
     </div>
   </section>
 
   <!-- Noticias actuales -->
-  <section id="noticias">
-    <h2>Noticias de la Temporada 2025</h2>
+  <section id="noticias" class="section">
+    <h2 class="section-title section-white">Noticias de la Temporada 2025</h2>
     <div class="lista-noticias">
       <!-- Noticias recientes se cargarán aquí -->
     </div>
   </section>
 
   <!-- Información de la temporada actual -->
-  <section id="temporada-actual">
-    <h2>Temporada Actual 2025</h2>
-    <p>Resumen de la temporada, carreras, resultados, estadísticas...</p>
+  <section id="temporada-actual" class="section">
+    <h2 class="section-title section-white">Temporada Actual 2025</h2>
+    <p class="muted">Resumen de la temporada, carreras, resultados, estadísticas...</p>
   </section>
 
   <!-- Seguimiento en vivo: pilotos y escuderías -->
-  <section id="seguimiento-en-vivo">
-    <h2>Seguimiento en Vivo</h2>
+  <section id="seguimiento-en-vivo" class="section">
+    <h2 class="section-title section-blue">Seguimiento en Vivo</h2>
 
     <div class="pilotos-actuales">
-      <h3>Pilotos 2025</h3>
+      <h3 class="subsection-title section-blue">Pilotos 2025</h3>
       <!-- Lista con nombres e imágenes (se agregarán luego) -->
     </div>
 
     <div class="escuderias-actuales">
-      <h3>Escuderías 2025</h3>
+      <h3 class="subsection-title section-blue">Escuderías 2025</h3>
       <!-- Lista con nombres e imágenes (se agregarán luego) -->
     </div>
   </section>
 
   <!-- Calendario de la temporada -->
-  <section id="calendario">
-    <h2>Calendario de la Temporada 2025</h2>
+  <section id="calendario" class="section">
+    <h2 class="section-title section-blue">Calendario de la Temporada 2025</h2>
     <div class="tabla-calendario">
       <!-- Carreras y fechas del calendario -->
     </div>
   </section>
 
+  <!-- Secciones en blanco (arriba del todo del sitio) -->
+  <section id="temporadas" class="section">
+    <h2 class="section-title section-white">Temporadas</h2>
+  </section>
+
+  <section id="escuderias" class="section">
+    <h2 class="section-title section-white">Escuderías</h2>
+  </section>
+
+  <section id="pilotos" class="section">
+    <h2 class="section-title section-white">Pilotos</h2>
+  </section>
+
   <!-- Contacto -->
-  <footer id="contacto">
-    <h2>Contáctanos</h2>
-    <p>Email: contacto@f1memories.com</p>
-    <p>Redes sociales: [Enlaces aquí]</p>
+  <footer id="contacto" class="site-footer">
+    <h2 class="section-title section-blue">Contáctanos</h2>
+    <p class="section-blue">Email: <a href="mailto:contacto@f1memories.com">contacto@f1memories.com</a></p>
+    <p class="section-blue">Redes sociales: <span>[Enlaces aquí]</span></p>
   </footer>
 
 </body>
