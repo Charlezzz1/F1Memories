@@ -3,100 +3,254 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>F1 Memories</title>
+  <title>F1 MEMORIES</title>
 
-  <!-- Fuente moderna -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-  <!-- Hoja de estilos -->
+  <!-- Tipografía F1 Regular (sube tu .woff2 en /fonts/F1-Regular.woff2) -->
+  <link rel="preload" href="fonts/F1-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Encabezado con logo y navegación -->
-  <header class="site-header">
-    <div id="logo">
-      <h1 class="site-title">F1 Memories</h1>
+  <!-- 1) Encabezado principal -->
+  <header class="site-header" role="banner">
+    <div class="title-wrap" aria-label="Contenedor del título principal">
+      <h1 class="site-title" aria-label="F1 MEMORIES">F1 MEMORIES</h1>
     </div>
-    <nav>
+
+    <nav class="main-nav" role="navigation" aria-label="Navegación principal">
       <ul class="nav-list">
-        <li><a href="#temporadas">Temporadas</a></li>
-        <li><a href="#escuderias">Escuderías</a></li>
-        <li><a href="#pilotos">Pilotos</a></li>
+        <li class="has-mega">
+          <a href="#pilotos" class="nav-link" aria-haspopup="true" aria-expanded="false">Pilotos</a>
+          <!-- Mega dropdown Pilotos -->
+          <div class="mega" role="dialog" aria-label="Lista de Pilotos" aria-modal="false">
+            <div class="mega-grid" data-type="pilotos" tabindex="-1">
+              <!-- Lista alfabética por apellido (tal cual pediste) -->
+              <button class="mini-card">Alexander Albon</button>
+              <button class="mini-card">Fernando Alonso</button>
+              <button class="mini-card">Andrea Kimi Antonelli</button>
+              <button class="mini-card">Oliver Bearman</button>
+              <button class="mini-card">Gabriel Bortoleto</button>
+              <button class="mini-card">Franco Colapinto</button>
+              <button class="mini-card">Jack Doohan</button>
+              <button class="mini-card">Pierre Gasly</button>
+              <button class="mini-card">Isack Hadjar</button>
+              <button class="mini-card">Lewis Hamilton</button>
+              <button class="mini-card">Nico Hülkenberg</button>
+              <button class="mini-card">Liam Lawson</button>
+              <button class="mini-card">Charles Leclerc</button>
+              <button class="mini-card">Lando Norris</button>
+              <button class="mini-card">Esteban Ocon</button>
+              <button class="mini-card">Oscar Piastri</button>
+              <button class="mini-card">George Russell</button>
+              <button class="mini-card">Carlos Sainz</button>
+              <button class="mini-card">Lance Stroll</button>
+              <button class="mini-card">Yuki Tsunoda</button>
+              <button class="mini-card">Max Verstappen</button>
+            </div>
+          </div>
+        </li>
+        <li class="has-mega">
+          <a href="#escuderias" class="nav-link" aria-haspopup="true" aria-expanded="false">Escuderías</a>
+          <!-- Mega dropdown Escuderías -->
+          <div class="mega" role="dialog" aria-label="Lista de Escuderías" aria-modal="false">
+            <div class="mega-grid" data-type="escuderias" tabindex="-1">
+              <button class="mini-card">Aston Martin Aramco F1 Team</button>
+              <button class="mini-card">BWT Alpine F1 Team</button>
+              <button class="mini-card">McLaren Formula 1 Team</button>
+              <button class="mini-card">Mercedes-AMG Petronas F1 Team</button>
+              <button class="mini-card">MoneyGram Haas F1 Team</button>
+              <button class="mini-card">Oracle Red Bull Racing</button>
+              <button class="mini-card">Scuderia Ferrari HP</button>
+              <button class="mini-card">Stake F1 Team Kick Sauber</button>
+              <button class="mini-card">Visa Cash App Racing Bulls F1 Team</button>
+              <button class="mini-card">Williams Racing</button>
+            </div>
+          </div>
+        </li>
+        <li><a href="#calendario" class="nav-link">Calendario</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Banner central -->
-  <section id="banner" class="banner">
-    <!-- Imagen se agregará luego -->
-    <h2 class="section-title section-white">Bienvenidos a F1 Memories</h2>
-  </section>
-
-  <!-- Sección: Un día como hoy -->
-  <section id="un-dia-como-hoy" class="section">
-    <h2 class="section-title section-white">Un día como hoy en la F1...</h2>
-    <div class="momentos-historicos">
-      <!-- Aquí se mostrará contenido conmemorativo diario -->
+  <!-- 2) Un día como hoy -->
+  <section id="un-dia-como-hoy" class="section navy">
+    <h2 class="section-title white">Un día como hoy en la F1…</h2>
+    <div class="stack">
+      <article class="card placeholder">
+        <div class="skeleton title">15 Ago — Efeméride 1</div>
+        <div class="skeleton text">Descripción breve de la efeméride…</div>
+      </article>
+      <article class="card placeholder">
+        <div class="skeleton title">Efeméride 2</div>
+        <div class="skeleton text">Descripción breve…</div>
+      </article>
+      <article class="card placeholder">
+        <div class="skeleton title">Efeméride 3</div>
+        <div class="skeleton text">Descripción breve…</div>
+      </article>
     </div>
   </section>
 
-  <!-- Noticias actuales -->
-  <section id="noticias" class="section">
-    <h2 class="section-title section-white">Noticias de la Temporada 2025</h2>
-    <div class="lista-noticias">
-      <!-- Noticias recientes se cargarán aquí -->
+  <!-- 3) Noticias 2025 — Carrusel 1x2 -->
+  <section id="noticias" class="section navy">
+    <h2 class="section-title white">Noticias de la Temporada 2025</h2>
+
+    <div class="carousel news" aria-label="Carrusel de noticias" aria-live="polite">
+      <div class="viewport" data-visible="2" tabindex="0">
+        <!-- Cards (placeholders con skeleton + sin imagen) -->
+        <article class="news-card snap">
+          <div class="media skeleton-16x9" aria-hidden="true"></div>
+          <h3 class="news-title">Título de noticia ejemplo que ocupa dos líneas máximo</h3>
+          <p class="news-desc">Bajada breve de tres líneas máximo para contextualizar…</p>
+          <time class="news-meta">2025-08-12</time>
+        </article>
+
+        <article class="news-card snap">
+          <div class="media skeleton-16x9"></div>
+          <h3 class="news-title">Otra noticia de ejemplo</h3>
+          <p class="news-desc">Texto de bajada con información de contexto…</p>
+          <time class="news-meta">2025-08-10</time>
+        </article>
+
+        <article class="news-card snap">
+          <div class="media skeleton-16x9"></div>
+          <h3 class="news-title">Tercera noticia con título acotado</h3>
+          <p class="news-desc">Descripción corta…</p>
+          <time class="news-meta">2025-08-08</time>
+        </article>
+      </div>
+      <!-- Flechas ocultas visualmente pero navegables por teclado -->
+      <button class="arrow prev" aria-label="Anterior" data-dir="-1" tabindex="-1">←</button>
+      <button class="arrow next" aria-label="Siguiente" data-dir="1" tabindex="-1">→</button>
     </div>
   </section>
 
-  <!-- Información de la temporada actual -->
-  <section id="temporada-actual" class="section">
-    <h2 class="section-title section-white">Temporada Actual 2025</h2>
-    <p class="muted">Resumen de la temporada, carreras, resultados, estadísticas...</p>
-  </section>
-
-  <!-- Seguimiento en vivo: pilotos y escuderías -->
-  <section id="seguimiento-en-vivo" class="section">
-    <h2 class="section-title section-blue">Seguimiento en Vivo</h2>
-
-    <div class="pilotos-actuales">
-      <h3 class="subsection-title section-blue">Pilotos 2025</h3>
-      <!-- Lista con nombres e imágenes (se agregarán luego) -->
+  <!-- 4) Temporada actual 2025 — Videos 9x1 + textura diagonal -->
+  <section id="temporada-actual" class="section navy textured">
+    <div class="section-head">
+      <h2 class="section-title white">Temporada Actual 2025 — Videos</h2>
+      <a class="cta" href="#" aria-label="Ver todos los videos">Ver todo</a>
     </div>
 
-    <div class="escuderias-actuales">
-      <h3 class="subsection-title section-blue">Escuderías 2025</h3>
-      <!-- Lista con nombres e imágenes (se agregarán luego) -->
+    <div class="carousel videos" aria-label="Carrusel de videos 2025" aria-live="polite">
+      <button class="arrow prev" aria-label="Anterior" data-dir="-1">←</button>
+      <div class="viewport vertical-off" data-total="9" tabindex="0">
+        <!-- 9 ítems, viewport muestra 1 (o 1.1) -->
+        <!-- Usa skeleton mientras no hay contenido real -->
+        <article class="video-card snap">
+          <div class="media skeleton-16x9"></div>
+          <h3 class="video-title">Video 1 (Placeholder)</h3>
+          <div class="meta">12:34 · 2025-08-01</div>
+        </article>
+        <article class="video-card snap"><div class="media skeleton-16x9"></div><h3 class="video-title">Video 2</h3><div class="meta">10:20 · 2025-08-02</div></article>
+        <article class="video-card snap"><div class="media skeleton-16x9"></div><h3 class="video-title">Video 3</h3><div class="meta">09:05 · 2025-08-03</div></article>
+        <article class="video-card snap"><div class="media skeleton-16x9"></div><h3 class="video-title">Video 4</h3><div class="meta">08:40 · 2025-08-04</div></article>
+        <article class="video-card snap"><div class="media skeleton-16x9"></div><h3 class="video-title">Video 5</h3><div class="meta">11:00 · 2025-08-05</div></article>
+        <article class="video-card snap"><div class="media skeleton-16x9"></div><h3 class="video-title">Video 6</h3><div class="meta">07:55 · 2025-08-06</div></article>
+        <article class="video-card snap"><div class="media skeleton-16x9"></div><h3 class="video-title">Video 7</h3><div class="meta">06:45 · 2025-08-07</div></article>
+        <article class="video-card snap"><div class="media skeleton-16x9"></div><h3 class="video-title">Video 8</h3><div class="meta">05:35 · 2025-08-08</div></article>
+        <article class="video-card snap"><div class="media skeleton-16x9"></div><h3 class="video-title">Video 9</h3><div class="meta">04:25 · 2025-08-09</div></article>
+      </div>
+      <button class="arrow next" aria-label="Siguiente" data-dir="1">→</button>
+      <div class="indicator" aria-hidden="true"><span class="current">1</span>/<span class="total">9</span></div>
     </div>
   </section>
 
-  <!-- Calendario de la temporada -->
-  <section id="calendario" class="section">
-    <h2 class="section-title section-blue">Calendario de la Temporada 2025</h2>
-    <div class="tabla-calendario">
-      <!-- Carreras y fechas del calendario -->
+  <!-- 5) Seguimiento en vivo (subtítulo) -->
+  <section id="seguimiento" class="section navy">
+    <h2 class="section-subtitle white center">Seguimiento en Vivo</h2>
+  </section>
+
+  <!-- 8) Calendario 2025 — Tabla responsive -->
+  <section id="calendario" class="section navy">
+    <h2 class="section-title white">Calendario de la Temporada 2025</h2>
+
+    <div class="table-wrap" role="region" aria-labelledby="calendario-title">
+      <table class="calendar">
+        <thead>
+          <tr>
+            <th scope="col">Carrera</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Ganador</th>
+            <th scope="col">Equipo</th>
+            <th scope="col">Vueltas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Orden exacto pedido -->
+          <tr><td>Australia</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>China</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Japón</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Baréin</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Arabia Saudita</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Estados Unidos</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Italia</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Mónaco</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>España</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Canadá</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Austria</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Reino Unido</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Bélgica</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Hungría</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Países Bajos</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Italia</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Azerbaiyán</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Singapur</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Estados Unidos</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>México</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Brasil</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Estados Unidos</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Catar</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>Emiratos Árabes Unidos</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <!-- Secciones en blanco (arriba del todo del sitio) -->
-  <section id="temporadas" class="section">
-    <h2 class="section-title section-white">Temporadas</h2>
+  <!-- 9) Historia — Tres widgets con scroll -->
+  <section id="historia" class="section navy">
+    <h2 class="section-title white">Historia</h2>
+    <div class="history-grid">
+      <div class="history-widget">
+        <h3 class="white">Temporadas</h3>
+        <div class="scroll">
+          <!-- 1950 a la actualidad (muestra algunos, tú puedes completar) -->
+          <ul>
+            <li>1950</li><li>1951</li><li>1952</li><li>1953</li><li>1954</li><li>1955</li>
+            <li>…</li>
+            <li>2023</li><li>2024</li><li>2025</li>
+          </ul>
+        </div>
+      </div>
+      <div class="history-widget">
+        <h3 class="white">Escuderías históricas</h3>
+        <div class="scroll">
+          <ul>
+            <li>Lotus</li><li>Brabham</li><li>Tyrrell</li><li>Renault</li><li>Honda</li><li>BMW Sauber</li>
+            <li>…</li>
+          </ul>
+        </div>
+      </div>
+      <div class="history-widget">
+        <h3 class="white">Pilotos históricos</h3>
+        <div class="scroll">
+          <ul>
+            <li>Juan Manuel Fangio</li><li>Jim Clark</li><li>Ayrton Senna</li><li>Michael Schumacher</li><li>Alain Prost</li>
+            <li>…</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="escuderias" class="section">
-    <h2 class="section-title section-white">Escuderías</h2>
-  </section>
-
-  <section id="pilotos" class="section">
-    <h2 class="section-title section-white">Pilotos</h2>
-  </section>
-
-  <!-- Contacto -->
-  <footer id="contacto" class="site-footer">
-    <h2 class="section-title section-blue">Contáctanos</h2>
-    <p class="section-blue">Email: <a href="mailto:contacto@f1memories.com">contacto@f1memories.com</a></p>
-    <p class="section-blue">Redes sociales: <span>[Enlaces aquí]</span></p>
+  <!-- 10) Contacto -->
+  <footer id="contacto" class="section navy">
+    <h2 class="section-title white">Contáctanos</h2>
+    <p class="contact-blue">Email: <a href="mailto:contacto@f1memories.com">contacto@f1memories.com</a></p>
+    <p class="contact-blue">Redes sociales: [Enlaces aquí]</p>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
