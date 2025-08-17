@@ -1,0 +1,20 @@
+{
+  "lastRound": 14,
+  "races": [
+    {"round":1,  "gp":"Australia",        "date":"14–16 Mar",       "circuit":"Melbourne",  "winner":"L. Norris",    "status":"done"},
+    {"round":2,  "gp":"China",            "date":"21–23 Mar",       "circuit":"Shanghai",   "winner":"O. Piastri",   "status":"done"},
+    {"round":3,  "gp":"Japón",            "date":"04–06 Abr",       "circuit":"Suzuka",     "winner":"M. Verstappen","status":"done"},
+    {"round":4,  "gp":"Baréin",           "date":"11–13 Abr",       "circuit":"Sakhir",     "winner":"O. Piastri",   "status":"done"},
+    {"round":5,  "gp":"Arabia Saudí",     "date":"18–20 Abr",       "circuit":"Jeddah",     "winner":"O. Piastri",   "status":"done"},
+    {"round":6,  "gp":"Miami",            "date":"02–04 May",       "circuit":"Miami",      "winner":"O. Piastri",   "status":"done"},
+    {"round":7,  "gp":"Emilia-Romaña",    "date":"16–18 May",       "circuit":"Imola",      "winner":"M. Verstappen","status":"done"},
+    {"round":8,  "gp":"Mónaco",           "date":"23–25 May",       "circuit":"Monte Carlo","winner":"L. Norris",    "status":"done"},
+    {"round":9,  "gp":"España",           "date":"30 May–01 Jun",   "circuit":"Barcelona",  "winner":"O. Piastri",   "status":"done"},
+    {"round":10, "gp":"Canadá",           "date":"13–15 Jun",       "circuit":"Montreal",   "winner":"G. Russell",   "status":"done"},
+    {"round":11, "gp":"Austria",          "date":"27–29 Jun",       "circuit":"Spielberg",  "winner":"L. Norris",    "status":"done"},
+    {"round":12, "gp":"Gran Bretaña",     "date":"04–06 Jul",       "circuit":"Silverstone","winner":"L. Norris",    "status":"done"},
+    {"round":13, "gp":"Bélgica",          "date":"25–27 Jul",       "circuit":"Spa",        "winner":"O. Piastri",   "status":"done"},
+    {"round":14, "gp":"Hungría",          "date":"01–03 Ago",       "circuit":"Budapest",   "winner":"L. Norris",    "status":"done"},
+    {"round":15, "gp":"Países Bajos",     "date":"29–31 Ago",       "circuit":"Zandvoort",  "winner":null,           "status":"next"}
+  ]
+}
