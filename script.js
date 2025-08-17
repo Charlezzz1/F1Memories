@@ -84,4 +84,3 @@ function paintRaces(calendar){
     console.error('Error cargando datos', e);
   }
 })();
-
