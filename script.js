@@ -1,13 +1,36 @@
 /* ====== UI ====== */
-// Carrusel
+/* ====== Carruseles (Noticias y Videos) con paso dinámico por data-cols ====== */
 document.querySelectorAll('.carousel').forEach(carousel=>{
-  const track=carousel.querySelector('.track');
-  const prev=carousel.querySelector('.prev');
-  const next=carousel.querySelector('.next');
-  const step = ()=> track.clientWidth/3 + 16;
-  prev?.addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
-  next?.addEventListener('click',()=>track.scrollBy({left: step(),behavior:'smooth'}));
+  const track = carousel.querySelector('.track');
+  const prev  = carousel.querySelector('.prev');
+  const next  = carousel.querySelector('.next');
+
+  // Por defecto 3 columnas (como Noticias). En Videos usamos data-cols="5".
+  const cols = parseInt(carousel.dataset.cols || '3', 10);
+
+  function gapPx(){
+    // Lee el gap real del track para que el cálculo sea exacto
+    const g = getComputedStyle(track).gap;
+    return parseFloat(g) || 16;
+  }
+  function step(){
+    const gap = gapPx();
+    // Ancho de una tarjeta = (ancho del track - gaps) / columnas visibles
+    const cardWidth = (track.clientWidth - gap*(cols - 1)) / cols;
+    return cardWidth + gap; // nos movemos una tarjeta + su gap
+  }
+
+  prev?.addEventListener('click', ()=> track.scrollBy({ left: -step(), behavior:'smooth' }));
+  next?.addEventListener('click', ()=> track.scrollBy({ left:  step(), behavior:'smooth' }));
+
+  // (Opcional) recálculo en resize para mejorar la “sensación” del paso
+  let rid;
+  window.addEventListener('resize', ()=>{
+    cancelAnimationFrame(rid);
+    rid = requestAnimationFrame(()=>{/* no hace falta recomputar nada aquí, step() ya usa medidas actuales */});
+  });
 });
+
 
 // Historia (1950–Actual)
 const years = Array.from({length: (new Date().getFullYear()-1950+1)}, (_,i)=>1950+i);
