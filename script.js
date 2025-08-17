@@ -1,65 +1,228 @@
-/* ===== Utilidades ===== */
-function snapScroll(container, dir = 1){
-  const card = container.querySelector('.snap');
-  const gap = parseInt(getComputedStyle(container).gap || 16, 10);
-  const width = card ? card.getBoundingClientRect().width : 320;
-  container.scrollBy({ left: dir * (width + gap), behavior: 'smooth' });
+/* ========= Carruseles con flechas (sin barras) ========= */
+function setupCarousel(section){
+  const track = section.querySelector('.track');
+  const prev = section.querySelector('.arrow.prev');
+  const next = section.querySelector('.arrow.next');
+
+  let index = 0;
+  const gap = 16;
+
+  function cardWidth(){
+    const first = track.children[0];
+    if(!first) return 0;
+    const rect = first.getBoundingClientRect();
+    return rect.width + gap;
+  }
+
+  function visibleCount(){
+    const vis = parseInt(section.dataset.visible || "1", 10);
+    return Math.max(1, vis);
+  }
+
+  function clamp(val, min, max){ return Math.max(min, Math.min(max, val)); }
+  function maxIndex(){
+    const total = track.children.length;
+    const vis = visibleCount();
+    return Math.max(0, total - vis);
+  }
+
+  function go(dir){
+    index = clamp(index + dir, 0, maxIndex());
+    const x = -index * cardWidth();
+    track.style.transform = `translateX(${x * 1}px)`;
+    updateIndicator();
+  }
+
+  function updateIndicator(){
+    const ind = section.querySelector('.indicator .current');
+    const tot = section.querySelector('.indicator .total');
+    if(ind && tot){
+      ind.textContent = String(index + 1);
+      tot.textContent = String(track.children.length);
+    }
+  }
+
+  prev?.addEventListener('click', ()=>go(-1));
+  next?.addEventListener('click', ()=>go(+1));
+  updateIndicator();
 }
 
-/* ===== Carruseles (Noticias 1x2 y Videos 1x1) ===== */
-document.querySelectorAll('.carousel').forEach(carousel=>{
-  const viewport = carousel.querySelector('.viewport');
-  const prev = carousel.querySelector('.arrow.prev');
-  const next = carousel.querySelector('.arrow.next');
+// Inicializa todos los carouseles
+document.querySelectorAll('.carousel').forEach(setupCarousel);
 
-  if(prev) prev.addEventListener('click', ()=> snapScroll(viewport, -1));
-  if(next) next.addEventListener('click', ()=> snapScroll(viewport, +1));
 
-  // Teclado
-  viewport?.addEventListener('keydown', e=>{
-    if(e.key === 'ArrowRight') snapScroll(viewport, +1);
-    if(e.key === 'ArrowLeft')  snapScroll(viewport, -1);
-  });
-
-  // Indicador (solo videos)
-  const indicator = carousel.querySelector('.indicator');
-  if(indicator){
-    const currentEl = indicator.querySelector('.current');
-    const cards = Array.from(viewport.querySelectorAll('.snap'));
-    function update(){
-      const left = viewport.getBoundingClientRect().left;
-      let idx = 0, min = Infinity;
-      cards.forEach((c,i)=>{
-        const d = Math.abs(c.getBoundingClientRect().left - left);
-        if(d < min){ min = d; idx = i; }
-      });
-      currentEl.textContent = String(idx+1);
-    }
-    viewport.addEventListener('scroll', ()=>{ clearTimeout(viewport._t); viewport._t = setTimeout(update, 120); });
-    update();
+/* ========= SEGUIMIENTO EN VIVO (datos verificados) =========
+ * Drivers (Top 5) al 03 Ago 2025 (tras Hungría):
+ * 1) Piastri 284, 2) Norris 275, 3) Verstappen 187, 4) Russell 172, 5) Leclerc 151
+ * Fuente: F1.com / ESPN:
+ * - Drivers: https://www.formula1.com/en/results/2025/drivers  (verificado)
+ * - Refuerzo: ESPN Standings 2025
+ *
+ * Constructores 2025 (Top 5):
+ * McLaren 559, Ferrari 260, Mercedes 236, Red Bull 194, Williams 70
+ * Fuente: F1.com Constructors 2025
+ *
+ * Última carrera (Hungría, 03 Ago 2025):
+ * Ganó Lando Norris (McLaren) sobre Oscar Piastri (McLaren) y George Russell
+ * Fuente: F1.com Race Result 2025 Hungary
+ *
+ * Próxima carrera:
+ * Dutch GP (Zandvoort) — Domingo 31 Ago 2025
+ * Fuentes: F1.com Dutch GP page / Dutch GP site
+ */
+const LIVE = {
+  topDrivers: [
+    { driver: "Oscar Piastri", pts: 284 },
+    { driver: "Lando Norris", pts: 275 },
+    { driver: "Max Verstappen", pts: 187 },
+    { driver: "George Russell", pts: 172 },
+    { driver: "Charles Leclerc", pts: 151 },
+  ],
+  constructors: [
+    { team: "McLaren", pts: 559 },
+    { team: "Ferrari", pts: 260 },
+    { team: "Mercedes", pts: 236 },
+    { team: "Red Bull Racing", pts: 194 },
+    { team: "Williams", pts: 70 },
+  ],
+  lastRace: {
+    name: "Hungría (Hungaroring)",
+    date: "03 Ago 2025",
+    result: "1) Lando Norris (McLaren) 2) Oscar Piastri (McLaren) 3) George Russell",
+  },
+  nextRace: {
+    name: "Países Bajos (Zandvoort)",
+    date: "31 Ago 2025",
   }
+};
+
+(function renderLive(){
+  const dl = document.getElementById('live-top-drivers');
+  const cl = document.getElementById('live-constructors');
+  const last = document.getElementById('live-last-race');
+  const next = document.getElementById('live-next-race');
+
+  if(dl){
+    dl.innerHTML = LIVE.topDrivers
+      .map(d => `<li>${d.driver} — <strong>${d.pts}</strong></li>`)
+      .join("");
+  }
+  if(cl){
+    cl.innerHTML = LIVE.constructors
+      .map(c => `<li>${c.team} — <strong>${c.pts}</strong></li>`)
+      .join("");
+  }
+  if(last){ last.textContent = `${LIVE.lastRace.name} — ${LIVE.lastRace.date} · ${LIVE.lastRace.result}`; }
+  if(next){ next.textContent = `${LIVE.nextRace.name} — ${LIVE.nextRace.date}`; }
+})();
+
+/* ========= CALENDARIO (orden oficial 2025; puedes reordenar si lo prefieres)
+ * Fuentes oficiales calendario/resultados: F1.com schedule 2025 + results.
+ * R1 Australia (Norris), R2 China (Piastri), R3 Japón (Verstappen), R4 Baréin (Piastri),
+ * R5 Arabia Saudita (Piastri), R6 Miami (Piastri), R7 Emilia-Romagna (Verstappen),
+ * R8 Mónaco (Norris), R9 España (Piastri), R10 Canadá (Russell),
+ * R11 Austria (Norris), R12 Gran Bretaña (Norris),
+ * R13 Bélgica (Piastri), R14 Hungría (Norris),
+ * R15 Países Bajos (29–31 Ago), … hasta Abu Dabi.
+ */
+const CALENDAR_ROWS = [
+  { gp: "Australia", date: "16 Mar 2025", winner: "Lando Norris", team: "McLaren", laps: "57" },
+  { gp: "China", date: "23 Mar 2025", winner: "Oscar Piastri", team: "McLaren", laps: "56" },
+  { gp: "Japón", date: "06 Abr 2025", winner: "Max Verstappen", team: "Red Bull", laps: "53" },
+  { gp: "Baréin", date: "13 Abr 2025", winner: "Oscar Piastri", team: "McLaren", laps: "57" },
+  { gp: "Arabia Saudita", date: "20 Abr 2025", winner: "Oscar Piastri", team: "McLaren", laps: "50" },
+  { gp: "Miami (EE. UU.)", date: "04 May 2025", winner: "Oscar Piastri", team: "McLaren", laps: "57" },
+  { gp: "Emilia-Romaña", date: "18 May 2025", winner: "Max Verstappen", team: "Red Bull", laps: "63" },
+  { gp: "Mónaco", date: "25 May 2025", winner: "Lando Norris", team: "McLaren", laps: "78" },
+  { gp: "España", date: "01 Jun 2025", winner: "Oscar Piastri", team: "McLaren", laps: "66" },
+  { gp: "Canadá", date: "15 Jun 2025", winner: "George Russell", team: "Mercedes", laps: "70" },
+  { gp: "Austria", date: "29 Jun 2025", winner: "Lando Norris", team: "McLaren", laps: "71" },
+  { gp: "Gran Bretaña", date: "06 Jul 2025", winner: "Lando Norris", team: "McLaren", laps: "52" },
+  { gp: "Bélgica", date: "27 Jul 2025", winner: "Oscar Piastri", team: "McLaren", laps: "44" },
+  { gp: "Hungría", date: "03 Ago 2025", winner: "Lando Norris", team: "McLaren", laps: "70" },
+  { gp: "Países Bajos", date: "31 Ago 2025", winner: "", team: "", laps: "" },
+  { gp: "Italia (Monza)", date: "07 Sep 2025", winner: "", team: "", laps: "" },
+  { gp: "Azerbaiyán", date: "21 Sep 2025", winner: "", team: "", laps: "" },
+  { gp: "Singapur", date: "05 Oct 2025", winner: "", team: "", laps: "" },
+  { gp: "Estados Unidos (Austin)", date: "19 Oct 2025", winner: "", team: "", laps: "" },
+  { gp: "México", date: "26 Oct 2025", winner: "", team: "", laps: "" },
+  { gp: "Brasil", date: "09 Nov 2025", winner: "", team: "", laps: "" },
+  { gp: "Estados Unidos (Las Vegas)", date: "22 Nov 2025", winner: "", team: "", laps: "" },
+  { gp: "Catar", date: "30 Nov 2025", winner: "", team: "", laps: "" },
+  { gp: "Abu Dabi", date: "07 Dic 2025", winner: "", team: "", laps: "" },
+];
+
+(function renderCalendar(){
+  const tb = document.getElementById('calendar-body');
+  if(!tb) return;
+  tb.innerHTML = CALENDAR_ROWS.map(r => `
+    <tr>
+      <td data-label="Carrera">${r.gp}</td>
+      <td data-label="Fecha">${r.date || ""}</td>
+      <td data-label="Ganador">${r.winner || ""}</td>
+      <td data-label="Equipo">${r.team || ""}</td>
+      <td data-label="Vueltas">${r.laps || ""}</td>
+    </tr>
+  `).join("");
+})();
+
+/* ========= Historia ========= */
+// Temporadas 1950–actualidad (año por línea)
+(function renderYears(){
+  const ul = document.getElementById('years-list');
+  if(!ul) return;
+  let out = "";
+  for(let y=1950; y<=2025; y++) out += `<li>${y}</li>`;
+  ul.innerHTML = out;
+})();
+document.getElementById('scroll-years')?.addEventListener('click', ()=>{
+  const el = document.getElementById('years-scroll');
+  el.scrollBy({ top: 160, behavior: 'smooth' });
 });
 
-/* ===== Mega dropdowns: hover/teclado + soporte touch ===== */
-document.querySelectorAll('.has-mega').forEach(item=>{
+// Escuderías históricas (DEMO parcial + guía para completar)
+// Fuente sugerida para completar: Wikipedia “List of Formula One constructors”
+const CONSTRUCTORS_PARTIAL = [
+  "Ferrari","McLaren","Mercedes","Red Bull","Williams","Lotus","Brabham",
+  "Renault","Benetton","Tyrrell","Jordan","Sauber","Minardi","Alfa Romeo",
+  "Aston Martin","Haas","Alpine","Racing Bulls (Toro Rosso/AlphaTauri)",
+  "BAR","Honda","Toyota","Jaguar","Arrows","Ligier","Prost","Super Aguri",
+  "Manor/Marussia/Virgin","HRT","Spyker/Midland","Osella","Onyx","Andrea Moda",
+];
+(function renderConstructors(){
+  const ul = document.getElementById('constructors-all');
+  if(!ul) return;
+  ul.innerHTML = CONSTRUCTORS_PARTIAL.map(n=>`<li>${n}</li>`).join("")
+    + `<li>… (pegar listado completo desde Wikipedia)</li>`;
+})();
+
+// Pilotos históricos (DEMO parcial + guía para completar)
+// Fuente sugerida para completar: Wikipedia “List of Formula One drivers”
+const DRIVERS_PARTIAL = [
+  "Juan Manuel Fangio","Alberto Ascari","Stirling Moss","Jim Clark","Graham Hill",
+  "Jackie Stewart","Niki Lauda","Alain Prost","Ayrton Senna","Michael Schumacher",
+  "Mika Häkkinen","Fernando Alonso","Sebastian Vettel","Lewis Hamilton","Max Verstappen"
+];
+(function renderDrivers(){
+  const ul = document.getElementById('drivers-all');
+  if(!ul) return;
+  ul.innerHTML = DRIVERS_PARTIAL.map(n=>`<li>${n}</li>`).join("")
+    + `<li>… (pegar listado completo desde Wikipedia)</li>`;
+})();
+
+/* ========= Accesibilidad en Megas (hover/focus, cierre al perder foco) ========= */
+document.querySelectorAll('.has-mega').forEach(item => {
   const link = item.querySelector('.nav-link');
   const panel = item.querySelector('.mega');
-  const grid  = panel?.querySelector('.mega-grid');
-
-  const open  = ()=>{ item.classList.add('open'); link.setAttribute('aria-expanded','true'); grid && grid.focus({preventScroll:true}); };
-  const close = ()=>{ item.classList.remove('open'); link.setAttribute('aria-expanded','false'); };
-
+  const grid = panel?.querySelector('.mega-grid');
+  function open(){ link.setAttribute('aria-expanded','true'); grid && grid.focus({preventScroll:true}); }
+  function close(){ link.setAttribute('aria-expanded','false'); }
   item.addEventListener('mouseenter', open);
   item.addEventListener('mouseleave', close);
-  panel?.addEventListener('focusout', e=>{ if(!panel.contains(e.relatedTarget) && e.relatedTarget !== link){ close(); } });
-
-  // Touch: tap para abrir/cerrar
-  link.addEventListener('touchend', (e)=>{ if(!item.classList.contains('open')){ e.preventDefault(); open(); } }, {passive:false});
-  document.addEventListener('touchstart', (e)=>{ if(item.classList.contains('open') && !item.contains(e.target)) close(); }, {passive:true});
-
-  // Ciclo con Tab
-  grid?.addEventListener('keydown', e=>{
+  panel?.addEventListener('focusout', (e) => { if(!panel.contains(e.relatedTarget) && e.relatedTarget !== link){ close(); } });
+  grid?.addEventListener('keydown', (e)=>{
     const focusables = Array.from(grid.querySelectorAll('.mini-card'));
+    if(!focusables.length) return;
     const first = focusables[0], last = focusables[focusables.length-1];
     if(e.key === 'Tab'){
       if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
@@ -68,113 +231,3 @@ document.querySelectorAll('.has-mega').forEach(item=>{
     if(e.key === 'Escape'){ close(); link.focus(); }
   });
 });
-
-/* ===== Seguimiento en Vivo — Standings (actualizados al 17-ago-2025) ===== */
-/* Fuente oficial F1 (drivers/constructors) */
-const DRIVERS = [
-  {pos:1,  name:"Oscar Piastri",   team:"McLaren",        pts:284},
-  {pos:2,  name:"Lando Norris",    team:"McLaren",        pts:275},
-  {pos:3,  name:"Max Verstappen",  team:"Red Bull",       pts:187},
-  {pos:4,  name:"George Russell",  team:"Mercedes",       pts:172},
-  {pos:5,  name:"Charles Leclerc", team:"Ferrari",        pts:151},
-  {pos:6,  name:"Lewis Hamilton",  team:"Ferrari",        pts:109},
-  {pos:7,  name:"Kimi Antonelli",  team:"Mercedes",       pts:64},
-  {pos:8,  name:"Alexander Albon", team:"Williams",       pts:54},
-  {pos:9,  name:"Nico Hülkenberg", team:"Kick Sauber",    pts:37},
-  {pos:10, name:"Esteban Ocon",    team:"Haas",           pts:27},
-];
-
-const TEAMS = [
-  {pos:1, name:"McLaren",       pts:559},
-  {pos:2, name:"Ferrari",       pts:260},
-  {pos:3, name:"Mercedes",      pts:236},
-  {pos:4, name:"Red Bull",      pts:194},
-  {pos:5, name:"Williams",      pts:70},
-  {pos:6, name:"Aston Martin",  pts:52},
-  {pos:7, name:"Kick Sauber",   pts:51},
-  {pos:8, name:"Racing Bulls",  pts:45},
-  {pos:9, name:"Haas",          pts:35},
-  {pos:10,name:"Alpine",        pts:20},
-];
-
-function paintStandings(){
-  const dBody = document.getElementById('drivers-standings');
-  const cBody = document.getElementById('constructors-standings');
-  if(dBody){
-    dBody.innerHTML = DRIVERS.map(d=>`<tr><td>${d.pos}</td><td>${d.name}</td><td>${d.team}</td><td>${d.pts}</td></tr>`).join('');
-  }
-  if(cBody){
-    cBody.innerHTML = TEAMS.map(t=>`<tr><td>${t.pos}</td><td>${t.name}</td><td>${t.pts}</td></tr>`).join('');
-  }
-}
-paintStandings();
-
-/* ===== Historia — Temporadas 1950→2025 con botón “Ver más” ===== */
-(function fillYears(){
-  const list = document.getElementById('years-list');
-  const btn  = document.getElementById('years-more');
-  if(!list || !btn) return;
-
-  const start = 1950, end = 2025;
-  const years = [];
-  for(let y=start; y<=end; y++) years.push(y);
-
-  const CHUNK = 38; // primeros 38 visibles, luego “Ver más”
-  function render(limit){
-    list.innerHTML = years.slice(0, limit).map(y=>`<li>${y}</li>`).join('');
-  }
-  render(CHUNK);
-
-  let shown = CHUNK;
-  btn.addEventListener('click', ()=>{
-    shown = Math.min(years.length, shown + 50);
-    render(shown);
-    if(shown >= years.length) btn.disabled = true, btn.textContent = 'Completo';
-  });
-})();
-
-/* ===== Historia — Cargar “Escuderías históricas” desde Wikipedia ===== */
-/* Usa API de Wikipedia (CORS OK) para no quemar el HTML con miles de nombres */
-async function loadConstructors(){
-  const ul = document.getElementById('constructors-list');
-  if(!ul) return;
-  ul.innerHTML = '<li class="muted">Cargando…</li>';
-
-  // Página: "List of Formula One constructors"
-  const url = 'https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Formula_One_constructors&prop=text&format=json&origin=*';
-  const res = await fetch(url); const data = await res.json();
-  const html = data?.parse?.text?.['*'] || '';
-  const tmp = document.createElement('div'); tmp.innerHTML = html;
-
-  // Tomamos los nombres de la tabla/listado
-  const names = Array.from(tmp.querySelectorAll('table.wikitable tbody tr td:first-child a, ul li a'))
-    .map(a=>a.textContent.trim())
-    .filter(Boolean)
-    .filter(n=>!/^Image:|^File:/i.test(n))
-    .slice(0, 1200); // seguridad
-
-  ul.innerHTML = names.length ? names.map(n=>`<li>${n}</li>`).join('') : '<li>No se pudo extraer el listado.</li>';
-}
-document.getElementById('load-constructors')?.addEventListener('click', loadConstructors);
-
-/* ===== Historia — Cargar “Pilotos históricos” desde Wikipedia ===== */
-async function loadDrivers(){
-  const ul = document.getElementById('drivers-list');
-  if(!ul) return;
-  ul.innerHTML = '<li class="muted">Cargando…</li>';
-
-  // Página: "List of Formula One drivers"
-  const url = 'https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Formula_One_drivers&prop=text&format=json&origin=*';
-  const res = await fetch(url); const data = await res.json();
-  const html = data?.parse?.text?.['*'] || '';
-  const tmp = document.createElement('div'); tmp.innerHTML = html;
-
-  const names = Array.from(tmp.querySelectorAll('table tbody tr td:nth-child(2) a, ul li a'))
-    .map(a=>a.textContent.trim())
-    .filter(Boolean)
-    .filter(n=>!/^Image:|^File:/i.test(n))
-    .slice(0, 2000);
-
-  ul.innerHTML = names.length ? names.map(n=>`<li>${n}</li>`).join('') : '<li>No se pudo extraer el listado.</li>';
-}
-document.getElementById('load-drivers')?.addEventListener('click', loadDrivers);
