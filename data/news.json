@@ -1,1 +1,87 @@
+[
+  {
+    "title": "McLaren presenta mejoras aerodinámicas para Monza",
+    "desc": "El equipo prueba un alerón trasero de baja carga y ajustes en el suelo.",
+    "date": "2025-08-12",
+    "image": "img/news-mclaren.jpg",
+    "url": "https://example.com/noticia-mclaren"
+  },
+  {
+    "title": "Ferrari HP confirma nuevo paquete de motor",
+    "desc": "Buscan optimizar consumo y potencia para tramos de alta velocidad.",
+    "date": "2025-08-11",
+    "image": "img/news-ferrari.jpg",
+    "url": "https://example.com/noticia-ferrari"
+  },
+  {
+    "title": "Red Bull evalúa configuración de suspensión delantera",
+    "desc": "Mejoras en entrada de curva a baja velocidad.",
+    "date": "2025-08-10",
+    "image": "img/news-redbull.jpg",
+    "url": "https://example.com/noticia-redbull"
+  },
+  {
+    "title": "Mercedes trabaja en la eficiencia del DRS",
+    "desc": "Buscan maximizar velocidad punta sin comprometer estabilidad.",
+    "date": "2025-08-09",
+    "image": "img/news-mercedes.jpg",
+    "url": "https://example.com/noticia-mercedes"
+  },
+  {
+    "title": "Williams integra nuevo fondo plano",
+    "desc": "Objetivo: mejorar el sellado del flujo y el rake.",
+    "date": "2025-08-08",
+    "image": "img/news-williams.jpg",
+    "url": "https://example.com/noticia-williams"
+  },
+  {
+    "title": "Aston Martin prueba mejoras en suspensión trasera",
+    "desc": "Enfocado en tracción a la salida de curvas lentas.",
+    "date": "2025-08-07",
+    "image": "img/news-aston.jpg",
+    "url": "https://example.com/noticia-aston"
+  },
+  {
+    "title": "RB introduce nuevo endplate delantero",
+    "desc": "Pequeños ajustes para mejorar el vórtice Y250.",
+    "date": "2025-08-06",
+    "image": "img/news-rb.jpg",
+    "url": "https://example.com/noticia-rb"
+  },
+  {
+    "title": "Haas refuerza su programa de correlación túnel-CFD",
+    "desc": "Buscan alinear simulaciones con pista real.",
+    "date": "2025-08-05",
+    "image": "img/news-haas.jpg",
+    "url": "https://example.com/noticia-haas"
+  },
+  {
+    "title": "Sauber adelanta piezas para Singapur",
+    "desc": "Optimización de refrigeración en condiciones húmedas.",
+    "date": "2025-08-04",
+    "image": "img/news-sauber.jpg",
+    "url": "https://example.com/noticia-sauber"
+  },
+  {
+    "title": "Alpine reconfigura el flap delantera",
+    "desc": "Mejorar carga a media velocidad sin drag extra.",
+    "date": "2025-08-03",
+    "image": "img/news-alpine.jpg",
+    "url": "https://example.com/noticia-alpine"
+  },
+  {
+    "title": "Ferrari prueba llantas prototipo",
+    "desc": "Test de temperaturas y desgaste.",
+    "date": "2025-08-02",
+    "image": "img/news-ferrari2.jpg",
+    "url": "https://example.com/noticia-ferrari2"
+  },
+  {
+    "title": "Pirelli actualiza compuestos para fin de temporada",
+    "desc": "Pequeños cambios de estructura y ventana de trabajo.",
+    "date": "2025-08-01",
+    "image": "img/news-pirelli.jpg",
+    "url": "https://example.com/noticia-pirelli"
+  }
+]
 
