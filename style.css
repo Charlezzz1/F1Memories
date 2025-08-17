@@ -54,10 +54,45 @@ header .brand{font-family:'F1 Regular',system-ui;font-weight:800;text-align:cent
 .news-card{background:#0E1218;border:1px solid var(--line);border-radius:var(--radius);padding:14px;display:grid;gap:8px}
 .news-img{aspect-ratio:16/9;background:#0B0F14;border:1px solid var(--line);border-radius:12px}
 
-/* W3 — Videos 3x3 */
-.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);overflow:auto;padding:4px}
-.video-grid{scrollbar-width:none}.video-grid::-webkit-scrollbar{display:none}
-.vitem{aspect-ratio:1/1;background:#0E1218;border:1px solid var(--line);border-radius:var(--radius);display:grid;place-items:center}
+/* W3 — Videos en carrusel 1x1 (mini-widgets) */
+.carousel.videos .track{
+  /* En desktop: 5 mini-tiles visibles */
+  grid-auto-columns: calc((100% - 4*var(--gap))/5);
+}
+
+/* Tamaño de cada video (1x1), un poco más compacto que las news-cards */
+.vitem{
+  aspect-ratio: 1/1;
+  background:#0E1218;
+  border:1px solid var(--line);
+  border-radius:12px;      /* más pequeño que var(--radius) para “mini” look */
+  display:grid;
+  place-items:center;
+  font-size:.95rem;
+  padding:6px;
+}
+
+/* Responsivo: tablet ~3 visibles, mobile 2 y 1 */
+@media (max-width: 900px){
+  .carousel.videos .track{
+    grid-auto-columns: calc((100% - 2*var(--gap))/3);
+  }
+}
+@media (max-width: 560px){
+  .carousel.videos .track{
+    grid-auto-columns: calc((100% - 1*var(--gap))/2);
+  }
+}
+@media (max-width: 380px){
+  .carousel.videos .track{
+    grid-auto-columns: 100%;
+  }
+}
+
+/* (Opcional) si quieres aún más “mini”, baja un poco el padding y fuente en vitem:
+.vitem{ font-size:.9rem; padding:4px; }
+*/
+
 
 /* W4 — Seguimiento en Vivo */
 .table-wrap{overflow:auto}
