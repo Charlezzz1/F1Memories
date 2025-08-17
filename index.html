@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>F1 Memories — Widgets estilo F1.com</title>
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./style.css?v=1" />
 </head>
 <body>
-  <!-- Encabezado tipo F1.com -->
+  <!-- Encabezado -->
   <header>
     <div class="container">
       <h1 class="brand">F1 MEMORIES</h1>
@@ -15,8 +15,7 @@
   </header>
 
   <main class="container">
-
-    <!-- W1: Un día como hoy en la F1 (hero + lista) -->
+    <!-- W1: Un día como hoy -->
     <section class="section">
       <h2>Un día como hoy en la F1…</h2>
       <div class="hero-today">
@@ -25,108 +24,63 @@
           <div class="overlay"><h2>Tu titular principal del día (usa el texto de tu web)</h2></div>
         </a>
         <div class="list">
-          <a class="hero-item card" href="#">
-            <div class="hero-thumb" aria-hidden="true"></div>
-            <div>
-              <h3>Efeméride 1</h3>
-              <p class="muted">Bajada breve de 1–2 líneas</p>
-            </div>
-          </a>
-          <a class="hero-item card" href="#">
-            <div class="hero-thumb" aria-hidden="true"></div>
-            <div>
-              <h3>Efeméride 2</h3>
-              <p class="muted">Bajada breve</p>
-            </div>
-          </a>
-          <a class="hero-item card" href="#">
-            <div class="hero-thumb" aria-hidden="true"></div>
-            <div>
-              <h3>Efeméride 3</h3>
-              <p class="muted">Bajada breve</p>
-            </div>
-          </a>
+          <a class="hero-item card" href="#"><div class="hero-thumb"></div><div><h3>Efeméride 1</h3><p class="muted">Bajada breve…</p></div></a>
+          <a class="hero-item card" href="#"><div class="hero-thumb"></div><div><h3>Efeméride 2</h3><p class="muted">Bajada breve…</p></div></a>
+          <a class="hero-item card" href="#"><div class="hero-thumb"></div><div><h3>Efeméride 3</h3><p class="muted">Bajada breve…</p></div></a>
         </div>
       </div>
     </section>
 
-    <!-- W2: Noticias de la Temporada 2025 (carrusel sin scroll visible) -->
+    <!-- W2: Noticias 2025 (carrusel sin scroll visible) -->
     <section class="section card">
-      <div class="sec-head">
-        <h2>Noticias de la Temporada 2025</h2>
-        <span class="badge">Carrusel 2x3</span>
-      </div>
+      <div class="sec-head"><h2>Noticias de la Temporada 2025</h2><span class="badge">Carrusel 2x3</span></div>
       <div class="carousel" data-items="news">
         <button class="btn nav prev" aria-label="Anterior">←</button>
         <div class="track" role="region" aria-label="Carrusel de noticias">
-          <!-- 6 tarjetas de ejemplo (reemplaza con tus noticias) -->
-          <article class="news-card">
-            <div class="news-img" aria-hidden="true"></div>
-            <h3>Titular 1 de tu web</h3>
-            <p class="muted">Bajada / sumario de la noticia</p>
-          </article>
-          <article class="news-card"><div class="news-img"></div><h3>Titular 2</h3><p class="muted">Bajada</p></article>
-          <article class="news-card"><div class="news-img"></div><h3>Titular 3</h3><p class="muted">Bajada</p></article>
-          <article class="news-card"><div class="news-img"></div><h3>Titular 4</h3><p class="muted">Bajada</p></article>
-          <article class="news-card"><div class="news-img"></div><h3>Titular 5</h3><p class="muted">Bajada</p></article>
-          <article class="news-card"><div class="news-img"></div><h3>Titular 6</h3><p class="muted">Bajada</p></article>
+          <article class="news-card"><div class="news-img"></div><h3>Titular 1</h3><p class="muted">Bajada…</p></article>
+          <article class="news-card"><div class="news-img"></div><h3>Titular 2</h3><p class="muted">Bajada…</p></article>
+          <article class="news-card"><div class="news-img"></div><h3>Titular 3</h3><p class="muted">Bajada…</p></article>
+          <article class="news-card"><div class="news-img"></div><h3>Titular 4</h3><p class="muted">Bajada…</p></article>
+          <article class="news-card"><div class="news-img"></div><h3>Titular 5</h3><p class="muted">Bajada…</p></article>
+          <article class="news-card"><div class="news-img"></div><h3>Titular 6</h3><p class="muted">Bajada…</p></article>
         </div>
         <button class="btn nav next" aria-label="Siguiente">→</button>
       </div>
     </section>
 
-    <!-- W3: Temporada Actual 2025 — Videos (rejilla 3x3; barras ocultas) -->
+    <!-- W3: Videos 3x3 -->
     <section class="section card">
-      <div class="sec-head">
-        <h2>Temporada Actual 2025 — Videos</h2>
-        <a class="badge" href="#videos">Ver todo</a>
-      </div>
+      <div class="sec-head"><h2>Temporada Actual 2025 — Videos</h2><a class="badge" href="#videos">Ver todo</a></div>
       <div class="video-grid">
-        <div class="vitem">Video 1</div>
-        <div class="vitem">Video 2</div>
-        <div class="vitem">Video 3</div>
-        <div class="vitem">Video 4</div>
-        <div class="vitem">Video 5</div>
-        <div class="vitem">Video 6</div>
-        <div class="vitem">Video 7</div>
-        <div class="vitem">Video 8</div>
-        <div class="vitem">Video 9</div>
+        <div class="vitem">Video 1</div><div class="vitem">Video 2</div><div class="vitem">Video 3</div>
+        <div class="vitem">Video 4</div><div class="vitem">Video 5</div><div class="vitem">Video 6</div>
+        <div class="vitem">Video 7</div><div class="vitem">Video 8</div><div class="vitem">Video 9</div>
       </div>
     </section>
 
-    <!-- W4: Seguimiento en Vivo (standings + última / próxima) -->
+    <!-- W4: Seguimiento en Vivo -->
     <section id="seguimiento" class="section grid grid-2">
       <div class="card">
         <h2>Top Pilotos (PTS)</h2>
         <p class="muted">Fuente: F1.com</p>
-        <div class="table-wrap">
-          <table class="tbl">
-            <thead><tr><th>#</th><th>Piloto</th><th>Equipo</th><th>PTS</th></tr></thead>
-            <tbody id="tblDrivers"><tr><td colspan="4">Cargando…</td></tr></tbody>
-          </table>
-        </div>
+        <div class="table-wrap"><table class="tbl">
+          <thead><tr><th>#</th><th>Piloto</th><th>Equipo</th><th>PTS</th></tr></thead>
+          <tbody id="tblDrivers"><tr><td colspan="4">Cargando…</td></tr></tbody>
+        </table></div>
       </div>
       <div class="card">
         <h2>Constructores (PTS)</h2>
         <p class="muted">Fuente: F1.com</p>
-        <div class="table-wrap">
-          <table class="tbl">
-            <thead><tr><th>#</th><th>Equipo</th><th>PTS</th></tr></thead>
-            <tbody id="tblTeams"><tr><td colspan="3">Cargando…</td></tr></tbody>
-          </table>
-        </div>
+        <div class="table-wrap"><table class="tbl">
+          <thead><tr><th>#</th><th>Equipo</th><th>PTS</th></tr></thead>
+          <tbody id="tblTeams"><tr><td colspan="3">Cargando…</td></tr></tbody>
+        </table></div>
       </div>
-      <div class="card">
-        <h2>Última carrera</h2>
-        <div id="lastRace">Cargando…</div>
-      </div>
-      <div class="card">
-        <h2>Próxima carrera</h2>
-        <div id="nextRace">Cargando…</div>
-      </div>
+      <div class="card"><h2>Última carrera</h2><div id="lastRace">Cargando…</div></div>
+      <div class="card"><h2>Próxima carrera</h2><div id="nextRace">Cargando…</div></div>
     </section>
 
-    <!-- W5: Historia — Temporadas (1950–Actual, salto por décadas) -->
+    <!-- W5: Historia (1950–Actual) -->
     <section class="section card">
       <h2>Historia — Temporadas</h2>
       <div class="history-wrap">
@@ -139,7 +93,7 @@
       </div>
     </section>
 
-    <!-- W6: Tabs Pilotos / Escuderías / Calendarios y Resultados -->
+    <!-- W6: Tabs -->
     <section class="section card">
       <h2>Pilotos, Escuderías, Calendarios y Resultados</h2>
       <div class="tabs" role="tablist" aria-label="Secciones">
@@ -152,11 +106,12 @@
       <div id="tab-calendar" class="tab-panel" role="tabpanel" hidden>
         <table class="tbl">
           <thead><tr><th>Carrera</th><th>Fecha</th><th>Ganador</th><th>Equipo</th><th>Vueltas</th></tr></thead>
-          <tbody><!-- Completa con tu contenido si quieres detalle por GP --></tbody>
+          <tbody></tbody>
         </table>
       </div>
     </section>
-
   </main>
 
-  <script s
+  <script src="./script.js?v=1" defer></script>
+</body>
+</html>
