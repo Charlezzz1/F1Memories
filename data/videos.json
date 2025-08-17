@@ -1,1 +1,66 @@
+[
+  {
+    "title": "Highlights GP de Italia 2025",
+    "duration": "07:42",
+    "date": "2025-08-12",
+    "thumb": "img/vid-italy.jpg",
+    "url": "https://example.com/video-italy"
+  },
+  {
+    "title": "Análisis técnico: Paquete Ferrari",
+    "duration": "09:05",
+    "date": "2025-08-11",
+    "thumb": "img/vid-ferrari.jpg",
+    "url": "https://example.com/video-ferrari"
+  },
+  {
+    "title": "Onboard: Vuelta rápida en Monza",
+    "duration": "05:18",
+    "date": "2025-08-10",
+    "thumb": "img/vid-onboard.jpg",
+    "url": "https://example.com/video-onboard"
+  },
+  {
+    "title": "Estrategias de neumáticos en altas temperaturas",
+    "duration": "06:10",
+    "date": "2025-08-09",
+    "thumb": "img/vid-tyres.jpg",
+    "url": "https://example.com/video-tyres"
+  },
+  {
+    "title": "Evolución aerodinámica 2025",
+    "duration": "08:20",
+    "date": "2025-08-08",
+    "thumb": "img/vid-aero.jpg",
+    "url": "https://example.com/video-aero"
+  },
+  {
+    "title": "Telemetría comparada: curvas lentas",
+    "duration": "04:56",
+    "date": "2025-08-07",
+    "thumb": "img/vid-telemetry.jpg",
+    "url": "https://example.com/video-telemetry"
+  },
+  {
+    "title": "Cómo funciona el DRS en rectas largas",
+    "duration": "03:44",
+    "date": "2025-08-06",
+    "thumb": "img/vid-drs.jpg",
+    "url": "https://example.com/video-drs"
+  },
+  {
+    "title": "Pit stops: dónde se gana tiempo",
+    "duration": "05:30",
+    "date": "2025-08-05",
+    "thumb": "img/vid-pit.jpg",
+    "url": "https://example.com/video-pit"
+  },
+  {
+    "title": "Setup agresivo vs conservador",
+    "duration": "06:12",
+    "date": "2025-08-04",
+    "thumb": "img/vid-setup.jpg",
+    "url": "https://example.com/video-setup"
+  }
+]
 
