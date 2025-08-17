@@ -1,0 +1,12 @@
+[
+  {"pos":1, "name":"Oscar Piastri", "team":"McLaren", "pts":284},
+  {"pos":2, "name":"Lando Norris", "team":"McLaren", "pts":275},
+  {"pos":3, "name":"Max Verstappen", "team":"Red Bull Racing", "pts":187},
+  {"pos":4, "name":"George Russell", "team":"Mercedes", "pts":172},
+  {"pos":5, "name":"Charles Leclerc", "team":"Ferrari", "pts":151},
+  {"pos":6, "name":"Lewis Hamilton", "team":"Ferrari", "pts":109},
+  {"pos":7, "name":"Kimi Antonelli", "team":"Mercedes", "pts":64},
+  {"pos":8, "name":"Alexander Albon", "team":"Williams", "pts":54},
+  {"pos":9, "name":"Nico Hülkenberg", "team":"Kick Sauber", "pts":37},
+  {"pos":10, "name":"Esteban Ocon", "team":"Haas", "pts":27}
+]
