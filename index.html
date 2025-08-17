@@ -3,115 +3,180 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>F1 MEMORIES – Mejora 1.1</title>
+  <title>F1 MEMORIES</title>
+
+  <!-- Tipografía F1 Regular (opcional). Sube /fonts/F1-Regular.woff2 -->
   <link rel="preload" href="fonts/F1-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="title-wrap">
+
+  <!-- Encabezado y navegación -->
+  <header class="site-header" role="banner">
+    <div class="title-wrap" aria-label="Contenedor del título principal">
       <h1 class="site-title">F1 MEMORIES</h1>
     </div>
-    <nav class="main-nav">
+
+    <nav class="main-nav" role="navigation" aria-label="Navegación principal">
       <ul class="nav-list">
-        <li class="has-mega"><a href="#pilotos" class="nav-link" aria-haspopup="true" aria-expanded="false">Pilotos</a>
-          <div class="mega">
+        <li class="has-mega">
+          <a href="#pilotos" class="nav-link" aria-haspopup="true" aria-expanded="false">Pilotos</a>
+          <div class="mega" role="dialog" aria-label="Pilotos" aria-modal="false">
             <div class="mega-grid" data-type="pilotos" tabindex="-1">
-              <!-- mismos pilotos anteriores -->
-              <!-- agregar calendario y resultados aquí -->
-              <button class="mini-card">Calendario & Resultados</button>
+              <button class="mini-card">Alexander Albon</button>
+              <button class="mini-card">Fernando Alonso</button>
+              <button class="mini-card">Andrea Kimi Antonelli</button>
+              <button class="mini-card">Oliver Bearman</button>
+              <button class="mini-card">Gabriel Bortoleto</button>
+              <button class="mini-card">Franco Colapinto</button>
+              <button class="mini-card">Jack Doohan</button>
+              <button class="mini-card">Pierre Gasly</button>
+              <button class="mini-card">Isack Hadjar</button>
+              <button class="mini-card">Lewis Hamilton</button>
+              <button class="mini-card">Nico Hülkenberg</button>
+              <button class="mini-card">Liam Lawson</button>
+              <button class="mini-card">Charles Leclerc</button>
+              <button class="mini-card">Lando Norris</button>
+              <button class="mini-card">Esteban Ocon</button>
+              <button class="mini-card">Oscar Piastri</button>
+              <button class="mini-card">George Russell</button>
+              <button class="mini-card">Carlos Sainz</button>
+              <button class="mini-card">Lance Stroll</button>
+              <button class="mini-card">Yuki Tsunoda</button>
+              <button class="mini-card">Max Verstappen</button>
+
+              <a class="mini-link" href="#calendario">Calendario 2025</a>
+              <a class="mini-link" href="#seguimiento">Resultados / Clasificaciones</a>
             </div>
           </div>
         </li>
-        <li class="has-mega"><a href="#escuderias" class="nav-link" aria-haspopup="true" aria-expanded="false">Escuderías</a>
-          <div class="mega">
+
+        <li class="has-mega">
+          <a href="#escuderias" class="nav-link" aria-haspopup="true" aria-expanded="false">Escuderías</a>
+          <div class="mega" role="dialog" aria-label="Escuderías" aria-modal="false">
             <div class="mega-grid" data-type="escuderias" tabindex="-1">
-              <!-- mismos equipos y botón calendario/resultados -->
-              <button class="mini-card">Calendario & Resultados</button>
+              <button class="mini-card">Aston Martin Aramco F1 Team</button>
+              <button class="mini-card">BWT Alpine F1 Team</button>
+              <button class="mini-card">McLaren Formula 1 Team</button>
+              <button class="mini-card">Mercedes-AMG Petronas F1 Team</button>
+              <button class="mini-card">MoneyGram Haas F1 Team</button>
+              <button class="mini-card">Oracle Red Bull Racing</button>
+              <button class="mini-card">Scuderia Ferrari HP</button>
+              <button class="mini-card">Stake F1 Team Kick Sauber</button>
+              <button class="mini-card">Visa Cash App Racing Bulls F1 Team</button>
+              <button class="mini-card">Williams Racing</button>
+
+              <a class="mini-link" href="#calendario">Calendario 2025</a>
+              <a class="mini-link" href="#seguimiento">Resultados / Clasificaciones</a>
             </div>
           </div>
         </li>
+
         <li><a href="#noticias" class="nav-link">Noticias</a></li>
         <li><a href="#temporada-actual" class="nav-link">Videos</a></li>
-        <li><a href="#seguimiento" class="nav-link">Seguimiento en Vivo</a></li>
+        <li><a href="#seguimiento" class="nav-link">Seguimiento</a></li>
         <li><a href="#historia" class="nav-link">Historia</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- Un día como hoy -->
   <section id="un-dia-como-hoy" class="section special-bg">
-    <h2 class="section-title">Un día como hoy en la F1…</h2>
+    <h2 class="section-title white">Un día como hoy en la F1…</h2>
     <div class="stack">
-      <!-- seguir igual: placeholder -->
+      <article class="card"><div class="sk-title">15 Ago — Efeméride 1</div><div class="sk-text">Descripción breve…</div></article>
+      <article class="card"><div class="sk-title">Efeméride 2</div><div class="sk-text">Descripción breve…</div></article>
+      <article class="card"><div class="sk-title">Efeméride 3</div><div class="sk-text">Descripción breve…</div></article>
     </div>
   </section>
 
+  <!-- Noticias 2025 — 2x3 con flechas, sin barra visible (desde JSON) -->
   <section id="noticias" class="section">
-    <h2 class="section-title">Noticias de la Temporada 2025</h2>
-    <div class="carousel grid-news" aria-live="polite">
-      <button class="arrow prev">←</button>
-      <div class="grid-viewport">
-        <!-- 12 news cards placeholders -->
-        ${Array(12).fill().map((_, i) => `
-          <article class="news-card grid-item">
-            <div class="media"></div>
-            <h3 class="news-title">Noticia ${i+1}</h3>
-            <p class="news-desc">Descripción breve…</p>
-            <time class="news-meta">2025-08-${i+1 < 10 ? '0'+(i+1) : (i+1)}</time>
-          </article>`).join('')}
+    <h2 class="section-title white">Noticias de la Temporada 2025</h2>
+    <div class="carousel grid-news" aria-label="Carrusel de noticias" aria-live="polite">
+      <button class="arrow prev" aria-label="Anterior">←</button>
+      <div class="grid-viewport" id="news-viewport">
+        <!-- Se rellena desde data/news.json -->
       </div>
-      <button class="arrow next">→</button>
+      <button class="arrow next" aria-label="Siguiente">→</button>
     </div>
   </section>
 
+  <!-- Videos 2025 — 1x1 con flechas, sin barra visible (desde JSON) -->
   <section id="temporada-actual" class="section special-bg">
     <div class="section-head">
-      <h2 class="section-title">Temporada Actual 2025 — Videos</h2>
-      <a class="cta" href="#" aria-label="Ver todos los videos">Ver todo</a>
+      <h2 class="section-title white">Temporada Actual 2025 — Videos</h2>
+      <a class="cta" href="#" aria-label="Ver todo">Ver todo</a>
     </div>
-    <div class="carousel videos" aria-live="polite">
-      <button class="arrow prev">←</button>
-      <div class="grid-viewport-1x1">
-        ${Array(9).fill().map((_, i) => `
-          <article class="video-card grid-item">
-            <div class="media"></div>
-            <h3 class="video-title">Video ${i+1}</h3>
-            <div class="meta">00:00 · Fecha</div>
-          </article>`).join('')}
+
+    <div class="carousel videos" aria-label="Carrusel de videos" aria-live="polite">
+      <button class="arrow prev" aria-label="Anterior">←</button>
+      <div class="grid-viewport-1x1" id="videos-viewport">
+        <!-- Se rellena desde data/videos.json -->
       </div>
-      <button class="arrow next">→</button>
+      <button class="arrow next" aria-label="Siguiente">→</button>
     </div>
   </section>
 
+  <!-- Seguimiento en Vivo (desde APIs) -->
   <section id="seguimiento" class="section">
-    <h2 class="section-title">Seguimiento en Vivo</h2>
-    <div id="live-data">Cargando datos actualizados...</div>
+    <h2 class="section-title white center">Seguimiento en Vivo</h2>
+    <div class="live-grid">
+      <div class="live-card">
+        <h3 class="white">Clasificación de Pilotos</h3>
+        <div id="live-drivers" class="live-list">Cargando…</div>
+      </div>
+      <div class="live-card">
+        <h3 class="white">Clasificación de Escuderías</h3>
+        <div id="live-constructors" class="live-list">Cargando…</div>
+      </div>
+      <div class="live-card">
+        <h3 class="white">Calendario 2025 (próximas/últimas)</h3>
+        <div id="live-calendar" class="live-list">Cargando…</div>
+      </div>
+      <div class="live-card">
+        <h3 class="white">Último Resultado</h3>
+        <div id="live-last-result" class="live-list">Cargando…</div>
+      </div>
+    </div>
   </section>
 
+  <!-- Calendario 2025 (tabla; se llena desde API) -->
+  <section id="calendario" class="section">
+    <h2 class="section-title white">Calendario de la Temporada 2025</h2>
+    <div class="table-wrap" role="region">
+      <table class="calendar" id="calendar-table">
+        <thead>
+          <tr>
+            <th scope="col">Carrera</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Ganador</th>
+            <th scope="col">Equipo</th>
+            <th scope="col">Vueltas</th>
+          </tr>
+        </thead>
+        <tbody id="calendar-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Historia -->
   <section id="historia" class="section">
-    <h2 class="section-title">Historia</h2>
+    <h2 class="section-title white">Historia</h2>
     <div class="history-grid">
-      <!-- Temporadas -->
       <div class="history-widget">
-        <h3>Temporadas</h3>
-        <div class="scroll" id="years-scroll">
-          <ul id="years-list"></ul>
-        </div>
-        <button id="scroll-years-btn">Desplazar continuo</button>
+        <h3 class="white">Temporadas</h3>
+        <div class="scroll" id="years-scroll"><ul id="years-list"></ul></div>
+        <button id="scroll-years-btn" class="btn">Desplazar continuo</button>
       </div>
-      <!-- Escuderías históricas -->
       <div class="history-widget">
-        <h3>Escuderías históricas</h3>
-        <div class="scroll" id="teams-scroll">
-          <ul id="teams-list"></ul>
-        </div>
+        <h3 class="white">Escuderías históricas</h3>
+        <div class="scroll" id="teams-scroll"><ul id="teams-list"></ul></div>
       </div>
-      <!-- Pilotos históricos -->
       <div class="history-widget">
-        <h3>Pilotos históricos</h3>
-        <div class="scroll" id="drivers-scroll">
-          <ul id="drivers-list"></ul>
-        </div>
+        <h3 class="white">Pilotos históricos</h3>
+        <div class="scroll" id="drivers-scroll"><ul id="drivers-list"></ul></div>
       </div>
     </div>
   </section>
