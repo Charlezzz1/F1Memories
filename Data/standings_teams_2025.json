@@ -1,0 +1,12 @@
+[
+  {"pos":1, "team":"McLaren", "pts":559},
+  {"pos":2, "team":"Ferrari", "pts":260},
+  {"pos":3, "team":"Mercedes", "pts":236},
+  {"pos":4, "team":"Red Bull Racing", "pts":194},
+  {"pos":5, "team":"Williams", "pts":70},
+  {"pos":6, "team":"Aston Martin", "pts":52},
+  {"pos":7, "team":"Kick Sauber", "pts":51},
+  {"pos":8, "team":"Racing Bulls", "pts":45},
+  {"pos":9, "team":"Haas", "pts":35},
+  {"pos":10, "team":"Alpine", "pts":20}
+]
