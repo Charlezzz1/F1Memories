@@ -99,4 +99,82 @@ const TEAMS = [
 
 function paintStandings(){
   const dBody = document.getElementById('drivers-standings');
-  const cBody = document.getElementById('constructors-standings
+  const cBody = document.getElementById('constructors-standings');
+  if(dBody){
+    dBody.innerHTML = DRIVERS.map(d=>`<tr><td>${d.pos}</td><td>${d.name}</td><td>${d.team}</td><td>${d.pts}</td></tr>`).join('');
+  }
+  if(cBody){
+    cBody.innerHTML = TEAMS.map(t=>`<tr><td>${t.pos}</td><td>${t.name}</td><td>${t.pts}</td></tr>`).join('');
+  }
+}
+paintStandings();
+
+/* ===== Historia — Temporadas 1950→2025 con botón “Ver más” ===== */
+(function fillYears(){
+  const list = document.getElementById('years-list');
+  const btn  = document.getElementById('years-more');
+  if(!list || !btn) return;
+
+  const start = 1950, end = 2025;
+  const years = [];
+  for(let y=start; y<=end; y++) years.push(y);
+
+  const CHUNK = 38; // primeros 38 visibles, luego “Ver más”
+  function render(limit){
+    list.innerHTML = years.slice(0, limit).map(y=>`<li>${y}</li>`).join('');
+  }
+  render(CHUNK);
+
+  let shown = CHUNK;
+  btn.addEventListener('click', ()=>{
+    shown = Math.min(years.length, shown + 50);
+    render(shown);
+    if(shown >= years.length) btn.disabled = true, btn.textContent = 'Completo';
+  });
+})();
+
+/* ===== Historia — Cargar “Escuderías históricas” desde Wikipedia ===== */
+/* Usa API de Wikipedia (CORS OK) para no quemar el HTML con miles de nombres */
+async function loadConstructors(){
+  const ul = document.getElementById('constructors-list');
+  if(!ul) return;
+  ul.innerHTML = '<li class="muted">Cargando…</li>';
+
+  // Página: "List of Formula One constructors"
+  const url = 'https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Formula_One_constructors&prop=text&format=json&origin=*';
+  const res = await fetch(url); const data = await res.json();
+  const html = data?.parse?.text?.['*'] || '';
+  const tmp = document.createElement('div'); tmp.innerHTML = html;
+
+  // Tomamos los nombres de la tabla/listado
+  const names = Array.from(tmp.querySelectorAll('table.wikitable tbody tr td:first-child a, ul li a'))
+    .map(a=>a.textContent.trim())
+    .filter(Boolean)
+    .filter(n=>!/^Image:|^File:/i.test(n))
+    .slice(0, 1200); // seguridad
+
+  ul.innerHTML = names.length ? names.map(n=>`<li>${n}</li>`).join('') : '<li>No se pudo extraer el listado.</li>';
+}
+document.getElementById('load-constructors')?.addEventListener('click', loadConstructors);
+
+/* ===== Historia — Cargar “Pilotos históricos” desde Wikipedia ===== */
+async function loadDrivers(){
+  const ul = document.getElementById('drivers-list');
+  if(!ul) return;
+  ul.innerHTML = '<li class="muted">Cargando…</li>';
+
+  // Página: "List of Formula One drivers"
+  const url = 'https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Formula_One_drivers&prop=text&format=json&origin=*';
+  const res = await fetch(url); const data = await res.json();
+  const html = data?.parse?.text?.['*'] || '';
+  const tmp = document.createElement('div'); tmp.innerHTML = html;
+
+  const names = Array.from(tmp.querySelectorAll('table tbody tr td:nth-child(2) a, ul li a'))
+    .map(a=>a.textContent.trim())
+    .filter(Boolean)
+    .filter(n=>!/^Image:|^File:/i.test(n))
+    .slice(0, 2000);
+
+  ul.innerHTML = names.length ? names.map(n=>`<li>${n}</li>`).join('') : '<li>No se pudo extraer el listado.</li>';
+}
+document.getElementById('load-drivers')?.addEventListener('click', loadDrivers);
