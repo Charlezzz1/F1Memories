@@ -72,4 +72,4 @@ header .brand{font-family:'F1 Regular',system-ui;font-weight:800;text-align:cent
 /* W5 — Historia > Temporadas */
 .history-wrap{display:grid;gap:12px}
 .history-ctrl{display:flex;gap:12px;align-items:center}
-.seasons{list-style:none;margin:0;padding:0;max-height:360px;overflow:auto;display:grid;grid-template-columns:repeat(6,1fr);gap:12p 
+.seasons{list-style:none;margin:0;padding:0;max-height:360px;overflow:auto;display:grid;grid-template-columns:repeat(6,1fr);gap:12p
