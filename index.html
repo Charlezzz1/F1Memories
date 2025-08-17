@@ -48,15 +48,31 @@
       </div>
     </section>
 
-    <!-- W3: Videos 3x3 -->
-    <section class="section card">
-      <div class="sec-head"><h2>Temporada Actual 2025 — Videos</h2><a class="badge" href="#videos">Ver todo</a></div>
-      <div class="video-grid">
-        <div class="vitem">Video 1</div><div class="vitem">Video 2</div><div class="vitem">Video 3</div>
-        <div class="vitem">Video 4</div><div class="vitem">Video 5</div><div class="vitem">Video 6</div>
-        <div class="vitem">Video 7</div><div class="vitem">Video 8</div><div class="vitem">Video 9</div>
-      </div>
-    </section>
+    <!-- W3: Temporada Actual 2025 — Videos (carrusel 1x1, botones iguales a Noticias) -->
+<section class="section card">
+  <div class="sec-head">
+    <h2>Temporada Actual 2025 — Videos</h2>
+    <a class="badge" href="#videos">Ver todo</a>
+  </div>
+
+  <!-- data-cols=5 para mostrar 5 mini-widgets por “página” en escritorio -->
+  <div class="carousel videos" data-cols="5">
+    <button class="btn nav prev" aria-label="Anterior">←</button>
+    <div class="track" role="region" aria-label="Carrusel de videos">
+      <!-- Ítems 1x1 (puedes cambiar los textos o meter thumbnails) -->
+      <div class="vitem">Video 1</div>
+      <div class="vitem">Video 2</div>
+      <div class="vitem">Video 3</div>
+      <div class="vitem">Video 4</div>
+      <div class="vitem">Video 5</div>
+      <div class="vitem">Video 6</div>
+      <div class="vitem">Video 7</div>
+      <div class="vitem">Video 8</div>
+      <div class="vitem">Video 9</div>
+    </div>
+    <button class="btn nav next" aria-label="Siguiente">→</button>
+  </div>
+</section>
 
     <!-- W4: Seguimiento en Vivo -->
     <section id="seguimiento" class="section grid grid-2">
