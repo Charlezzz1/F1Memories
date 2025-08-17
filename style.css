@@ -72,12 +72,4 @@ header .brand{font-family:'F1 Regular',system-ui;font-weight:800;text-align:cent
 /* W5 — Historia > Temporadas */
 .history-wrap{display:grid;gap:12px}
 .history-ctrl{display:flex;gap:12px;align-items:center}
-.seasons{list-style:none;margin:0;padding:0;max-height:360px;overflow:auto;display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-.seasons li{background:#0E1218;border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
-@media (max-width:800px){.seasons{grid-template-columns:repeat(4,1fr)}}
-@media (max-width:520px){.seasons{grid-template-columns:repeat(3,1fr)}}
-
-/* W6 — Tabs */
-.tabs{display:flex;gap:10px;margin-bottom:12px}
-.tab-panel[hidden]{display:none !important}
-
+.seasons{list-style:none;margin:0;padding:0;max-height:360px;overflow:auto;display:grid;grid-template-columns:repeat(6,1fr);gap:12p
