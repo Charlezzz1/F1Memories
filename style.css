@@ -1,3 +1,28 @@
+/* ===== Webfonts ===== */
+@font-face{
+  font-family: "F1 Regular";
+  src:
+    local("F1 Regular"), local("F1-Regular"), /* si el usuario ya la tiene instalada */
+    url("./fonts/F1-Regular.woff2") format("woff2"),
+    url("./fonts/F1-Regular.woff") format("woff"),
+    url("./fonts/F1-Regular.ttf") format("truetype"); /* solo si no tienes woff/woff2 */
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face{
+  font-family: "F1 Regular";
+  src:
+    local("F1 Bold"), local("F1-Bold"),
+    url("./fonts/F1-Bold.woff2") format("woff2"),
+    url("./fonts/F1-Bold.woff") format("woff"),
+    url("./fonts/F1-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* =========================
    F1 Memories — styles.css
    ========================= */
