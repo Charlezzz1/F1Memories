@@ -53,4 +53,93 @@
     </section>
 
     <!-- W3: Videos (carrusel 1x1, mini) -->
-    <section class="sectio
+    <section class="section card">
+      <div class="sec-head"><h2>Temporada Actual 2025 — Videos</h2><a class="badge" href="#videos">Ver todo</a></div>
+      <div class="carousel videos" data-cols="5">
+        <button class="btn nav prev" aria-label="Anterior">←</button>
+        <div class="track" role="region" aria-label="Carrusel de videos">
+          <div class="vitem">Video 1</div>
+          <div class="vitem">Video 2</div>
+          <div class="vitem">Video 3</div>
+          <div class="vitem">Video 4</div>
+          <div class="vitem">Video 5</div>
+          <div class="vitem">Video 6</div>
+          <div class="vitem">Video 7</div>
+          <div class="vitem">Video 8</div>
+          <div class="vitem">Video 9</div>
+        </div>
+        <button class="btn nav next" aria-label="Siguiente">→</button>
+      </div>
+    </section>
+
+    <!-- W? Fotos — Terror (carrusel 1x1, auto) -->
+    <section class="section card" id="photos-terror">
+      <div class="sec-head">
+        <h2>Fotos — Terror</h2>
+        <span class="badge">Galería</span>
+      </div>
+      <div class="carousel videos" data-cols="5">
+        <button class="btn nav prev" aria-label="Anterior">←</button>
+        <div class="track" role="region" aria-label="Carrusel de fotos"></div>
+        <button class="btn nav next" aria-label="Siguiente">→</button>
+      </div>
+    </section>
+
+    <!-- W4: Seguimiento en Vivo -->
+    <section id="seguimiento" class="section grid grid-2">
+      <div class="card">
+        <h2>Top Pilotos (PTS)</h2>
+        <p class="muted">Fuente: F1.com</p>
+        <div class="table-wrap"><table class="tbl">
+          <thead><tr><th>#</th><th>Piloto</th><th>Equipo</th><th>PTS</th></tr></thead>
+          <tbody id="tblDrivers"><tr><td colspan="4">Cargando…</td></tr></tbody>
+        </table></div>
+      </div>
+      <div class="card">
+        <h2>Constructores (PTS)</h2>
+        <p class="muted">Fuente: F1.com</p>
+        <div class="table-wrap"><table class="tbl">
+          <thead><tr><th>#</th><th>Equipo</th><th>PTS</th></tr></thead>
+          <tbody id="tblTeams"><tr><td colspan="3">Cargando…</td></tr></tbody>
+        </table></div>
+      </div>
+      <div class="card"><h2>Última carrera</h2><div id="lastRace">Cargando…</div></div>
+      <div class="card"><h2>Próxima carrera</h2><div id="nextRace">Cargando…</div></div>
+    </section>
+
+    <!-- W5: Historia (con ancla #temporadas) -->
+    <section id="temporadas" class="section card">
+      <h2>Historia — Temporadas</h2>
+      <div class="history-wrap">
+        <div class="history-ctrl">
+          <button class="btn" data-jump="-10">← 10</button>
+          <span id="yearRange" class="badge">1950–1959</span>
+          <button class="btn" data-jump="+10">10 →</button>
+        </div>
+        <ul id="seasons" class="seasons"></ul>
+      </div>
+    </section>
+
+    <!-- W6: Tabs -->
+    <section class="section card">
+      <h2>Pilotos, Escuderías, Calendarios y Resultados</h2>
+      <div class="tabs" role="tablist" aria-label="Secciones">
+        <button class="btn" role="tab" aria-selected="true" data-tab="drivers">Pilotos</button>
+        <button class="btn" role="tab" aria-selected="false" data-tab="teams">Escuderías</button>
+        <button class="btn" role="tab" aria-selected="false" data-tab="calendar">Calendarios y Resultados</button>
+      </div>
+      <div id="tab-drivers" class="tab-panel" role="tabpanel">…lista de pilotos (tu texto)…</div>
+      <div id="tab-teams" class="tab-panel" role="tabpanel" hidden>…lista de escuderías (tu texto)…</div>
+      <div id="tab-calendar" class="tab-panel" role="tabpanel" hidden>
+        <table class="tbl">
+          <thead><tr><th>Carrera</th><th>Fecha</th><th>Ganador</th><th>Equipo</th><th>Vueltas</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- JS con cache busting -->
+  <script src="./script.js?v=11" defer></script>
+</body>
+</html>
