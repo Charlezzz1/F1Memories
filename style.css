@@ -15,7 +15,7 @@
     url("./fonts/F1-Bold.woff") format("woff"),
     url("./fonts/F1-Bold.ttf") format("truetype");
   font-weight: 700;
-  font-style: normal;
+  font-style: italic !important;
   font-display: swap;
 }
 
