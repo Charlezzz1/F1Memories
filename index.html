@@ -4,9 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>F1 Memories — Widgets estilo F1.com</title>
-  <link rel="preload" href="./fonts/magistral-medium-italic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./style.css?v=8">
-  <link rel="stylesheet" href="./style.css?v=3" />
+  <!-- (Opcional) Preload de tu fuente si la usas -->
+  <!-- <link rel="preload" href="./fonts/magistral-medium-italic.woff2" as="font" type="font/woff2" crossorigin> -->
+
+  <!-- CSS con cache busting -->
+  <link rel="stylesheet" href="./style.css?v=11" />
 </head>
 <body>
   <!-- Encabezado -->
@@ -33,10 +35,10 @@
       </div>
     </section>
 
-    <!-- W2: Noticias 2025 (carrusel sin scroll visible) -->
+    <!-- W2: Noticias 2025 (carrusel 3-col) -->
     <section class="section card">
-      <div class="sec-head"><h2>Noticias de la Temporada 2025</h2><span class="badge">
-      <div class="carousel" data-items="news">
+      <div class="sec-head"><h2>Noticias de la Temporada 2025</h2><span class="badge">Carrusel 2x3</span></div>
+      <div class="carousel" data-cols="3">
         <button class="btn nav prev" aria-label="Anterior">←</button>
         <div class="track" role="region" aria-label="Carrusel de noticias">
           <article class="news-card"><div class="news-img"></div><h3>Titular 1</h3><p class="muted">Bajada…</p></article>
@@ -50,100 +52,5 @@
       </div>
     </section>
 
-    <!-- W3: Temporada Actual 2025 — Videos (carrusel 1x1, botones iguales a Noticias) -->
-<section class="section card">
-  <div class="sec-head">
-    <h2>Temporada Actual 2025 — Videos</h2>
-    <a class="badge" href="#videos">Ver todo</a>
-  </div>
-
-  <!-- data-cols=5 para mostrar 5 mini-widgets por “página” en escritorio -->
-  <div class="carousel videos" data-cols="5">
-    <button class="btn nav prev" aria-label="Anterior">←</button>
-    <div class="track" role="region" aria-label="Carrusel de videos">
-      <!-- Ítems 1x1 (puedes cambiar los textos o meter thumbnails) -->
-      <div class="vitem">Video 1</div>
-      <div class="vitem">Video 2</div>
-      <div class="vitem">Video 3</div>
-      <div class="vitem">Video 4</div>
-      <div class="vitem">Video 5</div>
-      <div class="vitem">Video 6</div>
-      <div class="vitem">Video 7</div>
-      <div class="vitem">Video 8</div>
-      <div class="vitem">Video 9</div>
-    </div>
-    <button class="btn nav next" aria-label="Siguiente">→</button>
-  </div>
-</section>
-
-<!-- W? Fotos — Terror (carrusel 1x1, auto desde GitHub) -->
-<section class="section card" id="photos-terror">
-  <div class="sec-head">
-    <h2>Fotos — Terror</h2>
-    <span class="badge">Galería</span>
-  </div>
-
-  <div class="carousel videos" data-cols="5">
-    <button class="btn nav prev" aria-label="Anterior">←</button>
-    <div class="track" role="region" aria-label="Carrusel de fotos"></div>
-    <button class="btn nav next" aria-label="Siguiente">→</button>
-  </div>
-</section>
-
-      <!-- W4: Seguimiento en Vivo -->
-    <section id="seguimiento" class="section grid grid-2">
-      <div class="card">
-        <h2>Top Pilotos (PTS)</h2>
-        <p class="muted">Fuente: F1.com</p>
-        <div class="table-wrap"><table class="tbl">
-          <thead><tr><th>#</th><th>Piloto</th><th>Equipo</th><th>PTS</th></tr></thead>
-          <tbody id="tblDrivers"><tr><td colspan="4">Cargando…</td></tr></tbody>
-        </table></div>
-      </div>
-      <div class="card">
-        <h2>Constructores (PTS)</h2>
-        <p class="muted">Fuente: F1.com</p>
-        <div class="table-wrap"><table class="tbl">
-          <thead><tr><th>#</th><th>Equipo</th><th>PTS</th></tr></thead>
-          <tbody id="tblTeams"><tr><td colspan="3">Cargando…</td></tr></tbody>
-        </table></div>
-      </div>
-      <div class="card"><h2>Última carrera</h2><div id="lastRace">Cargando…</div></div>
-      <div class="card"><h2>Próxima carrera</h2><div id="nextRace">Cargando…</div></div>
-    </section>
-
-    <!-- W5: Historia (1950–Actual) con ANCLA -->
-    <section id="temporadas" class="section card">
-      <h2>Historia — Temporadas</h2>
-      <div class="history-wrap">
-        <div class="history-ctrl">
-          <button class="btn" data-jump="-10">← 10</button>
-          <span id="yearRange" class="badge">1950–1959</span>
-          <button class="btn" data-jump="+10">10 →</button>
-        </div>
-        <ul id="seasons" class="seasons"></ul>
-      </div>
-    </section>
-
-    <!-- W6: Tabs -->
-    <section class="section card">
-      <h2>Pilotos, Escuderías, Calendarios y Resultados</h2>
-      <div class="tabs" role="tablist" aria-label="Secciones">
-        <button class="btn" role="tab" aria-selected="true" data-tab="drivers">Pilotos</button>
-        <button class="btn" role="tab" aria-selected="false" data-tab="teams">Escuderías</button>
-        <button class="btn" role="tab" aria-selected="false" data-tab="calendar">Calendarios y Resultados</button>
-      </div>
-      <div id="tab-drivers" class="tab-panel" role="tabpanel">…lista de pilotos (tu texto)…</div>
-      <div id="tab-teams" class="tab-panel" role="tabpanel" hidden>…lista de escuderías (tu texto)…</div>
-      <div id="tab-calendar" class="tab-panel" role="tabpanel" hidden>
-        <table class="tbl">
-          <thead><tr><th>Carrera</th><th>Fecha</th><th>Ganador</th><th>Equipo</th><th>Vueltas</th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
-  </main>
-
-  <script src="./script.js?v=3" defer></script>
-</body>
-</html>
+    <!-- W3: Videos (carrusel 1x1, mini) -->
+    <section class="sectio
