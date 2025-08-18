@@ -1,32 +1,19 @@
-/* ===== Webfont: Magistral Medium Italic ===== */
+/* =========================
+   F1 Memories — style.css
+   ========================= */
+
+/* (Opcional) Fuente local Magistral (italic) */
 @font-face{
   font-family: "Magistral";
   src: url("./fonts/magistral-medium-italic.woff2") format("woff2");
-  font-weight: 500;   /* “Medium” */
-  font-style: italic; /* este archivo es la versión italic */
+  font-weight: 500;
+  font-style: italic;
   font-display: swap;
 }
-
-@font-face{
-  font-family: "F1 Regular";
-  src:
-    local("F1 Bold"), local("F1-Bold"),
-    url("./fonts/F1-Bold.woff2") format("woff2"),
-    url("./fonts/F1-Bold.woff") format("woff"),
-    url("./fonts/F1-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic !important;
-  font-display: swap;
-}
-
-/* =========================
-   F1 Memories — styles.css
-   ========================= */
 
 /* Variables */
 :root{
   --rosso-corsa:#D40000;
-  --navy:#001F3F;
   --bg:#0B0E12;
   --card:#12161C;
   --text:#E6E8EC;
@@ -39,11 +26,7 @@
 
 /* Base */
 *{box-sizing:border-box}
-html, body{
-  font-family: "Magistral", system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
 html{scroll-behavior:smooth}
 img{max-width:100%;display:block}
 a{color:var(--accent);text-decoration:none}
@@ -59,6 +42,16 @@ h3{font-size:clamp(16px,2vw,20px);font-weight:700}
 .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#1E2630;color:#D6DBE1;font-size:.85rem}
 .btn{appearance:none;border:0;cursor:pointer;background:linear-gradient(180deg,#222A33,#171C22);border:1px solid #2C333D;color:#fff;padding:10px 14px;border-radius:12px}
 
+/* Header */
+header{background:var(--rosso-corsa);padding:16px 0;margin-bottom:8px}
+header .brand{
+  font-weight:800;text-align:center;color:#fff;
+  /* Descomenta si quieres usar Magistral en el header:
+  font-family:"Magistral",system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  font-style:italic;font-weight:500;
+  */
+}
+
 /* Grids utilitarias */
 .grid{display:grid;gap:var(--gap)}
 .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -72,18 +65,13 @@ h3{font-size:clamp(16px,2vw,20px);font-weight:700}
   .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
 }
 
-/* Header */
-header{background:var(--rosso-corsa);padding:16px 0;margin-bottom:8px}
-header .brand{font-family:'F1 Regular',system-ui;font-weight:800;text-align:center;color:#fff}
-
 /* =========================
    W1 — Un día como hoy
    ========================= */
 .hero-today{display:grid;grid-template-columns:2fr 1fr;gap:var(--gap)}
 .hero-today .featured{position:relative;overflow:hidden;border-radius:var(--radius)}
 .hero-today .featured .overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.0),rgba(0,0,0,.6));
+  position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.0),rgba(0,0,0,.6));
   padding:16px;display:flex;align-items:end
 }
 .hero-today .featured h2{margin:0}
@@ -92,59 +80,45 @@ header .brand{font-family:'F1 Regular',system-ui;font-weight:800;text-align:cent
 .hero-thumb{width:84px;height:56px;border-radius:10px;background:#0E1218;border:1px solid var(--line)}
 
 /* =========================
-   W2 — Noticias 2025 (Carrusel)
+   Carrusel genérico
    ========================= */
 .sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:12px;flex-wrap:wrap}
-
-/* Carrusel genérico (Noticias por defecto: 3 columnas visibles) */
 .carousel{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px}
 .carousel .nav{width:44px;height:44px;border-radius:12px}
 .carousel .track{
-  display:grid;grid-auto-flow:column;
-  grid-auto-columns:calc((100% - 2*var(--gap))/3); /* 3 visibles por defecto */
-  gap:var(--gap);overflow:auto;scroll-behavior:smooth;padding:4px
+  display:grid;grid-auto-flow:column;gap:var(--gap);overflow:auto;scroll-behavior:smooth;padding:4px;
+  grid-auto-columns:calc((100% - 2*var(--gap))/3); /* por defecto 3 visibles (Noticias) */
 }
-/* Ocultar barras de desplazamiento */
 .carousel .track{scrollbar-width:none}
 .carousel .track::-webkit-scrollbar{display:none}
 
-.news-card{
-  background:#0E1218;border:1px solid var(--line);
-  border-radius:var(--radius);padding:14px;display:grid;gap:8px
-}
+/* Noticias (tarjetas apaisadas) */
+.news-card{background:#0E1218;border:1px solid var(--line);border-radius:var(--radius);padding:14px;display:grid;gap:8px}
 .news-img{aspect-ratio:16/9;background:#0B0F14;border:1px solid var(--line);border-radius:12px}
 
 /* =========================
-   W3 — Videos 1x1 (Carrusel mini)
+   W3 — Videos 1×1 (mini)
    ========================= */
-/* En escritorio: 5 mini-tiles visibles */
 .carousel.videos .track{
-  grid-auto-columns:calc((100% - 4*var(--gap))/5);
+  grid-auto-columns:calc((100% - 4*var(--gap))/5); /* 5 visibles en desktop */
 }
-
-/* Tile de video 1x1 más compacto */
 .vitem{
-  aspect-ratio:1/1;
-  background:#0E1218;border:1px solid var(--line);
-  border-radius:12px; /* más pequeño que var(--radius) para look mini */
-  display:grid;place-items:center;
-  font-size:.95rem;padding:6px
+  aspect-ratio:1/1;background:#0E1218;border:1px solid var(--line);
+  border-radius:12px;display:grid;place-items:center;font-size:.95rem;padding:6px
 }
-
-/* Responsivo para videos: tablet 3, móvil 2 y 1 */
 @media (max-width:900px){
-  .carousel.videos .track{
-    grid-auto-columns:calc((100% - 2*var(--gap))/3);
-  }
+  .carousel.videos .track{grid-auto-columns:calc((100% - 2*var(--gap))/3)}
 }
 @media (max-width:560px){
-  .carousel.videos .track{
-    grid-auto-columns:calc((100% - 1*var(--gap))/2);
-  }
+  .carousel.videos .track{grid-auto-columns:calc((100% - 1*var(--gap))/2)}
 }
 @media (max-width:380px){
   .carousel.videos .track{grid-auto-columns:100%}
 }
+
+/* Fotos (que la imagen llene el cuadro sin deformarse) */
+.vitem picture, .vitem img{width:100%;height:100%}
+.vitem img{object-fit:cover;border-radius:10px}
 
 /* =========================
    W4 — Seguimiento en Vivo
@@ -153,10 +127,6 @@ header .brand{font-family:'F1 Regular',system-ui;font-weight:800;text-align:cent
 .tbl{width:100%;border-collapse:collapse}
 .tbl th,.tbl td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
 .tbl thead th{color:#C8CDD4;font-weight:600}
-
-/* (Opcional) KPIs si los usas */
-.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap)}
-@media (max-width:720px){.kpis{grid-template-columns:1fr}}
 
 /* =========================
    W5 — Historia > Temporadas
@@ -174,11 +144,6 @@ header .brand{font-family:'F1 Regular',system-ui;font-weight:800;text-align:cent
 @media (max-width:800px){.seasons{grid-template-columns:repeat(4,1fr)}}
 @media (max-width:520px){.seasons{grid-template-columns:repeat(3,1fr)}}
 
-/* =========================
-   W6 — Tabs
-   ========================= */
+/* Tabs */
 .tabs{display:flex;gap:10px;margin-bottom:12px}
 .tab-panel[hidden]{display:none !important}
-/* Fotos en carrusel: que la imagen llene el cuadro sin deformarse */
-.vitem picture, .vitem img{width:100%;height:100%}
-.vitem img{object-fit:cover;border-radius:10px}
