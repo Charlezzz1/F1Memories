@@ -1,13 +1,9 @@
-/* ===== Webfonts ===== */
+/* ===== Webfont: Magistral Medium Italic ===== */
 @font-face{
-  font-family: "F1 Regular";
-  src:
-    local("F1 Regular"), local("F1-Regular"), /* si el usuario ya la tiene instalada */
-    url("./fonts/F1-Regular.woff2") format("woff2"),
-    url("./fonts/F1-Regular.woff") format("woff"),
-    url("./fonts/F1-Regular.ttf") format("truetype"); /* solo si no tienes woff/woff2 */
-  font-weight: 400;
-  font-style: normal;
+  font-family: "Magistral";
+  src: url("./fonts/magistral-medium-italic.woff2") format("woff2");
+  font-weight: 500;   /* “Medium” */
+  font-style: italic; /* este archivo es la versión italic */
   font-display: swap;
 }
 
