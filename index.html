@@ -4,7 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>F1 Memories — Widgets estilo F1.com</title>
-  <link rel="stylesheet" href="./style.css?v=12" />
+
+  <!-- (Opcional) Preload de tu fuente si la usas -->
+  <!-- <link rel="preload" href="./fonts/magistral-medium-italic.woff2" as="font" type="font/woff2" crossorigin> -->
+
+  <!-- CSS (cache busting con ?v=100) -->
+  <link rel="stylesheet" href="./style.css?v=100" />
 </head>
 <body>
   <!-- Encabezado -->
@@ -54,15 +59,21 @@
       <div class="carousel videos" data-cols="5">
         <button class="btn nav prev" aria-label="Anterior">←</button>
         <div class="track" role="region" aria-label="Carrusel de videos">
-          <div class="vitem">Video 1</div><div class="vitem">Video 2</div><div class="vitem">Video 3</div>
-          <div class="vitem">Video 4</div><div class="vitem">Video 5</div><div class="vitem">Video 6</div>
-          <div class="vitem">Video 7</div><div class="vitem">Video 8</div><div class="vitem">Video 9</div>
+          <div class="vitem">Video 1</div>
+          <div class="vitem">Video 2</div>
+          <div class="vitem">Video 3</div>
+          <div class="vitem">Video 4</div>
+          <div class="vitem">Video 5</div>
+          <div class="vitem">Video 6</div>
+          <div class="vitem">Video 7</div>
+          <div class="vitem">Video 8</div>
+          <div class="vitem">Video 9</div>
         </div>
         <button class="btn nav next" aria-label="Siguiente">→</button>
       </div>
     </section>
 
-    <!-- W? Fotos — Terror (carrusel 1x1, auto) -->
+    <!-- W3.5: Fotos — Terror (carrusel 1x1) -->
     <section class="section card" id="photos-terror">
       <div class="sec-head">
         <h2>Fotos — Terror</h2>
@@ -97,7 +108,7 @@
       <div class="card"><h2>Próxima carrera</h2><div id="nextRace">Cargando…</div></div>
     </section>
 
-    <!-- W5: Historia (con ancla #temporadas) -->
+    <!-- W5: Historia (ancla #temporadas) -->
     <section id="temporadas" class="section card">
       <h2>Historia — Temporadas</h2>
       <div class="history-wrap">
@@ -129,6 +140,7 @@
     </section>
   </main>
 
-  <script src="./script.js?v=12" defer></script>
+  <!-- JS (cache busting con ?v=100) -->
+  <script src="./script.js?v=100" defer></script>
 </body>
 </html>
