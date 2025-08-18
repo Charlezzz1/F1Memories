@@ -1,38 +1,21 @@
-/* ====== UI ====== */
-/* ====== Carruseles (Noticias y Videos) con paso dinámico por data-cols ====== */
+/* =========================
+   F1 Memories — script.js
+   ========================= */
+
+/* --------- Carruseles (Noticias / Videos / Fotos) --------- */
 document.querySelectorAll('.carousel').forEach(carousel=>{
   const track = carousel.querySelector('.track');
   const prev  = carousel.querySelector('.prev');
   const next  = carousel.querySelector('.next');
+  const cols  = parseInt(carousel.dataset.cols || '3', 10);
+  const gapPx = ()=> parseFloat(getComputedStyle(track).gap) || 16;
+  const step  = ()=> (track.clientWidth - gapPx()*(cols-1))/cols + gapPx();
 
-  // Por defecto 3 columnas (como Noticias). En Videos usamos data-cols="5".
-  const cols = parseInt(carousel.dataset.cols || '3', 10);
-
-  function gapPx(){
-    // Lee el gap real del track para que el cálculo sea exacto
-    const g = getComputedStyle(track).gap;
-    return parseFloat(g) || 16;
-  }
-  function step(){
-    const gap = gapPx();
-    // Ancho de una tarjeta = (ancho del track - gaps) / columnas visibles
-    const cardWidth = (track.clientWidth - gap*(cols - 1)) / cols;
-    return cardWidth + gap; // nos movemos una tarjeta + su gap
-  }
-
-  prev?.addEventListener('click', ()=> track.scrollBy({ left: -step(), behavior:'smooth' }));
-  next?.addEventListener('click', ()=> track.scrollBy({ left:  step(), behavior:'smooth' }));
-
-  // (Opcional) recálculo en resize para mejorar la “sensación” del paso
-  let rid;
-  window.addEventListener('resize', ()=>{
-    cancelAnimationFrame(rid);
-    rid = requestAnimationFrame(()=>{/* no hace falta recomputar nada aquí, step() ya usa medidas actuales */});
-  });
+  prev?.addEventListener('click', ()=> track.scrollBy({left:-step(), behavior:'smooth'}));
+  next?.addEventListener('click', ()=> track.scrollBy({left: step(), behavior:'smooth'}));
 });
 
-
-// Historia (1950–Actual)
+/* --------- Historia (1950–Actual con salto 10 años) --------- */
 const years = Array.from({length: (new Date().getFullYear()-1950+1)}, (_,i)=>1950+i);
 const list = document.getElementById('seasons');
 const range = document.getElementById('yearRange');
@@ -56,7 +39,7 @@ document.querySelectorAll('[data-jump]').forEach(btn=>{
   });
 });
 
-// Tabs
+/* --------- Tabs --------- */
 document.querySelectorAll('.tabs [role="tab"]').forEach(tab=>{
   tab.addEventListener('click',()=>{
     const name=tab.dataset.tab;
@@ -66,18 +49,18 @@ document.querySelectorAll('.tabs [role="tab"]').forEach(tab=>{
   });
 });
 
-/* ====== DATOS ====== */
-async function safeLoad(path){
-  try{
-    const r = await fetch(path, {cache:'no-store'});
-    if(!r.ok) throw new Error(r.statusText);
-    return await r.json();
-  }catch(e){
-    console.warn('No se pudo cargar', path, e);
-    return null;
+/* --------- Util: carga JSON con múltiples rutas (data y Data) --------- */
+async function loadJSONPaths(paths){
+  for(const p of paths){
+    try{
+      const r = await fetch(p, {cache:'no-store'});
+      if(r.ok) return await r.json();
+    }catch(e){}
   }
+  return null;
 }
 
+/* --------- Seguimiento en Vivo (con fallbacks) --------- */
 const FALLBACK_DRIVERS = [
   {"pos":1,"name":"Oscar Piastri","team":"McLaren","pts":284},
   {"pos":2,"name":"Lando Norris","team":"McLaren","pts":275},
@@ -113,35 +96,49 @@ const FALLBACK_CALENDAR = {
 function paintStandings(drivers, teams){
   const dBody = document.getElementById('tblDrivers');
   const tBody = document.getElementById('tblTeams');
-  dBody.innerHTML = drivers.map(d =>
+  if(dBody) dBody.innerHTML = drivers.map(d =>
     `<tr><td>${d.pos}</td><td>${d.name}</td><td>${d.team}</td><td>${d.pts}</td></tr>`
   ).join('');
-  tBody.innerHTML = teams.map(t =>
+  if(tBody) tBody.innerHTML = teams.map(t =>
     `<tr><td>${t.pos}</td><td>${t.team}</td><td>${t.pts}</td></tr>`
   ).join('');
 }
-
 function paintRaces(calendar){
-  const last = calendar.races.find(r=>r.status==='done' && r.round===calendar.lastRound) || calendar.races.find(r=>r.status==='done');
-  const next = calendar.races.find(r=>r.status==='next');
-  if(last){
-    document.getElementById('lastRace').textContent = `${last.gp} — ${last.date} | Ganador: ${last.winner ?? '—'}`;
+  const last = calendar.races.find(r => r.status==='done' && r.round===calendar.lastRound) || calendar.races.find(r=>r.status==='done');
+  const next = calendar.races.find(r => r.status==='next');
+  const lastBox = document.getElementById('lastRace');
+  const nextBox = document.getElementById('nextRace');
+  if(lastBox && last){
+    lastBox.textContent = `${last.gp} — ${last.date} | Ganador: ${last.winner ?? '—'}`;
   }
-  if(next){
-    document.getElementById('nextRace').textContent = `${next.gp} — ${next.date} | Circuito: ${next.circuit}`;
+  if(nextBox && next){
+    nextBox.textContent = `${next.gp} — ${next.date} | Circuito: ${next.circuit}`;
   }
 }
 
-(async function init(){
-  const [drivers, teams, calendar] = await Promise.all([
-    safeLoad('./data/standings_drivers_2025.json'),
-    safeLoad('./data/standings_teams_2025.json'),
-    safeLoad('./data/calendar_2025.json')
-  ]);
-  paintStandings(drivers || FALLBACK_DRIVERS, teams || FALLBACK_TEAMS);
-  paintRaces(calendar || FALLBACK_CALENDAR);
+(async function initLive(){
+  const drivers = await loadJSONPaths([
+    './data/standings_drivers_2025.json',
+    './Data/standings_drivers_2025.json'
+  ]) || FALLBACK_DRIVERS;
+
+  const teams = await loadJSONPaths([
+    './data/standings_teams_2025.json',
+    './Data/standings_teams_2025.json'
+  ]) || FALLBACK_TEAMS;
+
+  const calendar = await loadJSONPaths([
+    './data/calendar_2025.json',
+    './Data/calendar_2025.json'
+  ]) || FALLBACK_CALENDAR;
+
+  paintStandings(drivers, teams);
+  paintRaces(calendar);
 })();
-/* ====== Galería: cargar fotos automáticamente desde el repo (GitHub API) ====== */
+
+/* --------- Galería de fotos (auto desde GitHub) --------- */
+/* Si prefieres no usar la API, puedes comentar todo este bloque y
+   meter <figure class="vitem"><img src="./img/..."></figure> a mano. */
 async function buildPhotoCarouselFromGitHub({ owner, repo, ref='main', dirs=[], targetSelector }){
   const container = document.querySelector(targetSelector);
   if(!container) return;
@@ -161,7 +158,7 @@ async function buildPhotoCarouselFromGitHub({ owner, repo, ref='main', dirs=[], 
         .filter(it => it.type === 'file' && exts.some(e => it.name.toLowerCase().endsWith(e)))
         .map(it => ({ name: it.name, path: `${dir}/${it.name}` }));
       if(imgs.length){ files = imgs; break; }
-    }catch(e){ /* intenta siguiente dir */ }
+    }catch(e){}
   }
 
   if(!files.length){
@@ -171,7 +168,7 @@ async function buildPhotoCarouselFromGitHub({ owner, repo, ref='main', dirs=[], 
 
   const frag = document.createDocumentFragment();
   for(const f of files){
-    const raw = `https://raw.githubusercontent.com/${owner}/${repo}/${ref}/${f.path}`;
+    const raw = `https://raw.githubusercontent.com/Charlezzz1/F1Memories/${ref}/${f.path}`;
     const alt = f.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
     const fig = document.createElement('figure');
     fig.className = 'vitem';
@@ -185,12 +182,12 @@ async function buildPhotoCarouselFromGitHub({ owner, repo, ref='main', dirs=[], 
   track.appendChild(frag);
 }
 
-/* Llama a la función con los directorios candidatos (ajusta a tu carpeta real) */
+/* Llama a la galería con TU carpeta real de fotos (ajusta 'dirs') */
 buildPhotoCarouselFromGitHub({
   owner: 'Charlezzz1',
   repo: 'F1Memories',
   ref: 'main',
-  // Si tus 7 fotos están en, por ejemplo, img/terror, deja solo ese:
+  // Deja una sola carpeta si sabes dónde están (recomendado):
   // dirs: ['img/terror'],
   dirs: ['img/terror','img/horror','images/terror','images/horror','img','images','fotos','Fotos'],
   targetSelector: '#photos-terror'
