@@ -141,3 +141,57 @@ function paintRaces(calendar){
   paintStandings(drivers || FALLBACK_DRIVERS, teams || FALLBACK_TEAMS);
   paintRaces(calendar || FALLBACK_CALENDAR);
 })();
+/* ====== Galería: cargar fotos automáticamente desde el repo (GitHub API) ====== */
+async function buildPhotoCarouselFromGitHub({ owner, repo, ref='main', dirs=[], targetSelector }){
+  const container = document.querySelector(targetSelector);
+  if(!container) return;
+  const track = container.querySelector('.track');
+  if(!track) return;
+
+  const exts = ['.avif','.webp','.jpg','.jpeg','.png'];
+  let files = [];
+
+  for(const dir of dirs){
+    try{
+      const url = `https://api.github.com/repos/${owner}/${repo}/contents/${dir}?ref=${ref}`;
+      const res = await fetch(url, { cache: 'no-store' });
+      if(!res.ok) continue;
+      const list = await res.json();
+      const imgs = list
+        .filter(it => it.type === 'file' && exts.some(e => it.name.toLowerCase().endsWith(e)))
+        .map(it => ({ name: it.name, path: `${dir}/${it.name}` }));
+      if(imgs.length){ files = imgs; break; }
+    }catch(e){ /* intenta siguiente dir */ }
+  }
+
+  if(!files.length){
+    track.innerHTML = '<div class="vitem">No encontré imágenes. Colócalas en /img/terror/ (o ajusta dirs en script.js)</div>';
+    return;
+  }
+
+  const frag = document.createDocumentFragment();
+  for(const f of files){
+    const raw = `https://raw.githubusercontent.com/${owner}/${repo}/${ref}/${f.path}`;
+    const alt = f.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
+    const fig = document.createElement('figure');
+    fig.className = 'vitem';
+    fig.innerHTML = `
+      <img src="${raw}" alt="${alt}" loading="lazy" decoding="async" width="400" height="400">
+      <figcaption class="muted" style="font-size:.8rem;margin-top:6px">${alt}</figcaption>
+    `;
+    frag.appendChild(fig);
+  }
+  track.innerHTML = '';
+  track.appendChild(frag);
+}
+
+/* Llama a la función con los directorios candidatos (ajusta a tu carpeta real) */
+buildPhotoCarouselFromGitHub({
+  owner: 'Charlezzz1',
+  repo: 'F1Memories',
+  ref: 'main',
+  // Si tus 7 fotos están en, por ejemplo, img/terror, deja solo ese:
+  // dirs: ['img/terror'],
+  dirs: ['img/terror','img/horror','images/terror','images/horror','img','images','fotos','Fotos'],
+  targetSelector: '#photos-terror'
+});
