@@ -39,7 +39,11 @@
 
 /* Base */
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,Segoe UI,Roboto,Helvetica,Arial}
+html, body{
+  font-family: "Magistral", system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
 html{scroll-behavior:smooth}
 img{max-width:100%;display:block}
 a{color:var(--accent);text-decoration:none}
