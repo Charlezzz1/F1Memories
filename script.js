@@ -62,34 +62,34 @@ async function loadJSONPaths(paths){
 
 /* --------- Seguimiento en Vivo (con fallbacks) --------- */
 const FALLBACK_DRIVERS = [
-  {"pos":1,"name":"Oscar Piastri","team":"McLaren","pts":284},
-  {"pos":2,"name":"Lando Norris","team":"McLaren","pts":275},
-  {"pos":3,"name":"Max Verstappen","team":"Red Bull Racing","pts":187},
-  {"pos":4,"name":"George Russell","team":"Mercedes","pts":172},
-  {"pos":5,"name":"Charles Leclerc","team":"Ferrari","pts":151},
-  {"pos":6,"name":"Lewis Hamilton","team":"Ferrari","pts":109},
-  {"pos":7,"name":"Kimi Antonelli","team":"Mercedes","pts":64},
-  {"pos":8,"name":"Alexander Albon","team":"Williams","pts":54},
-  {"pos":9,"name":"Nico Hülkenberg","team":"Kick Sauber","pts":37},
-  {"pos":10,"name":"Esteban Ocon","team":"Haas","pts":27}
+  {"pos":1,"name":"Oscar Piastri","team":"McLaren","pts":324},
+  {"pos":2,"name":"Lando Norris","team":"McLaren","pts":293},
+  {"pos":3,"name":"Max Verstappen","team":"Red Bull Racing","pts":230},
+  {"pos":4,"name":"George Russell","team":"Mercedes","pts":194},
+  {"pos":5,"name":"Charles Leclerc","team":"Ferrari","pts":163},
+  {"pos":6,"name":"Lewis Hamilton","team":"Ferrari","pts":117},
+  {"pos":7,"name":"Alexander Albon","team":"Williams","pts":70},
+  {"pos":8,"name":"Kimi Antonelli","team":"Mercedes","pts":66},
+  {"pos":9,"name":"Isack Hadjar","team":"Racing Bulls","pts":38},
+  {"pos":10,"name":"Nico H\u00fclkenberg","team":"Kick Sauber","pts":37}
 ];
 const FALLBACK_TEAMS = [
-  {"pos":1,"team":"McLaren","pts":559},
-  {"pos":2,"team":"Ferrari","pts":260},
-  {"pos":3,"team":"Mercedes","pts":236},
-  {"pos":4,"team":"Red Bull Racing","pts":194},
-  {"pos":5,"team":"Williams","pts":70},
-  {"pos":6,"team":"Aston Martin","pts":52},
-  {"pos":7,"team":"Kick Sauber","pts":51},
-  {"pos":8,"team":"Racing Bulls","pts":45},
-  {"pos":9,"team":"Haas","pts":35},
+  {"pos":1,"team":"McLaren","pts":617},
+  {"pos":2,"team":"Ferrari","pts":280},
+  {"pos":3,"team":"Mercedes","pts":260},
+  {"pos":4,"team":"Red Bull Racing","pts":239},
+  {"pos":5,"team":"Williams","pts":86},
+  {"pos":6,"team":"Aston Martin","pts":62},
+  {"pos":7,"team":"Racing Bulls","pts":61},
+  {"pos":8,"team":"Kick Sauber","pts":55},
+  {"pos":9,"team":"Haas","pts":44},
   {"pos":10,"team":"Alpine","pts":20}
 ];
 const FALLBACK_CALENDAR = {
   "lastRound":14,
   "races":[
-    {"round":14,"gp":"Hungría","date":"01–03 Ago","circuit":"Budapest","winner":"L. Norris","status":"done"},
-    {"round":15,"gp":"Países Bajos","date":"29–31 Ago","circuit":"Zandvoort","winner":null,"status":"next"}
+    {"round":16,"gp":"Italia","date":"05–07 Sep","circuit":"Monza","winner":"M. Verstappen","status":"done"},
+    {"round":17,"gp":"Azerbaiy\u00e1n","date":"19–21 Sep","circuit":"Bak\u00fa","winner":null,"status":"next"}
   ]
 };
 
