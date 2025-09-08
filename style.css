@@ -2,15 +2,6 @@
    F1 Memories — style.css
    ========================= */
 
-/* (Opcional) Fuente local Magistral (italic) */
-@font-face{
-  font-family: "Magistral";
-  src: url("./fonts/magistral-medium-italic.woff2") format("woff2");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
 /* Variables */
 :root{
   --rosso-corsa:#D40000;
@@ -26,7 +17,10 @@
 
 /* Base */
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+html,body{
+  margin:0;padding:0;background:var(--bg);color:var(--text);
+  font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif
+}
 html{scroll-behavior:smooth}
 img{max-width:100%;display:block}
 a{color:var(--accent);text-decoration:none}
@@ -44,13 +38,7 @@ h3{font-size:clamp(16px,2vw,20px);font-weight:700}
 
 /* Header */
 header{background:var(--rosso-corsa);padding:16px 0;margin-bottom:8px}
-header .brand{
-  font-weight:800;text-align:center;color:#fff;
-  /* Descomenta si quieres usar Magistral en el header:
-  font-family:"Magistral",system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  font-style:italic;font-weight:500;
-  */
-}
+header .brand{font-weight:800;text-align:center;color:#fff}
 
 /* Grids utilitarias */
 .grid{display:grid;gap:var(--gap)}
@@ -97,10 +85,10 @@ header .brand{
 .news-img{aspect-ratio:16/9;background:#0B0F14;border:1px solid var(--line);border-radius:12px}
 
 /* =========================
-   W3 — Videos 1×1 (mini)
+   W3 — Videos 1×1 (mini por defecto)
    ========================= */
 .carousel.videos .track{
-  grid-auto-columns:calc((100% - 4*var(--gap))/5); /* 5 visibles en desktop */
+  grid-auto-columns:calc((100% - 4*var(--gap))/5); /* 5 visibles en desktop para VIDEOS */
 }
 .vitem{
   aspect-ratio:1/1;background:#0E1218;border:1px solid var(--line);
@@ -116,9 +104,34 @@ header .brand{
   .carousel.videos .track{grid-auto-columns:100%}
 }
 
-/* Fotos (que la imagen llene el cuadro sin deformarse) */
-.vitem picture, .vitem img{width:100%;height:100%}
-.vitem img{object-fit:cover;border-radius:10px}
+/* =========================
+   W3.5 — Fotos GRANDES (solo sección #photos-terror)
+   ========================= */
+/* Desktop: 3 columnas grandes */
+#photos-terror .carousel.videos .track{
+  grid-auto-columns: calc((100% - 2*var(--gap))/3);
+}
+/* Tablet: 2 columnas */
+@media (max-width: 900px){
+  #photos-terror .carousel.videos .track{
+    grid-auto-columns: calc((100% - 1*var(--gap))/2);
+  }
+}
+/* Móvil: 1 columna */
+@media (max-width: 560px){
+  #photos-terror .carousel.videos .track{
+    grid-auto-columns: 100%;
+  }
+}
+
+/* Las fotos ocupan TODO el cuadro */
+#photos-terror .vitem{padding:0;border-radius:14px;position:relative}
+#photos-terror .vitem img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+#photos-terror .vitem figcaption{
+  position:absolute;left:8px;right:8px;bottom:8px;
+  background:rgba(0,0,0,.45);color:#fff;border-radius:10px;
+  padding:4px 8px;font-size:.8rem
+}
 
 /* =========================
    W4 — Seguimiento en Vivo
